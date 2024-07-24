@@ -8,7 +8,7 @@ export const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(47cd,79,79,1);
+  background: linear-gradient(90deg, rgba(29,37,46,1) 0%, rgba(47,79,79,1) 120%);
   padding: 0 50px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 `;
