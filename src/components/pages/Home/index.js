@@ -29,6 +29,9 @@ export const Button = styled.button`
     transform: scale(1.3);
     
   }
+  @media screen and (max-width: 686px){
+    width: 20%;
+  }
 `;
 
 

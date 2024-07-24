@@ -5,11 +5,18 @@ export const Container = styled.div`
   padding: 16px;
   background-color: #f9f9f9;
   width: 20%;
-  max-width: 400px;
   margin: 0 auto;
   position: absolute;
   top: 12.8%;
-  
+  @media screen and (max-width: 545px) {
+    display: block;
+    position: relative;
+    width: 100%;
+    
+  }
+  @media (max-width: 910px) {
+      top: 21%;
+  }
 `;
 
 export const Language = styled.div`

@@ -102,12 +102,6 @@ function Books() {
 
   return (
     <Container>
-      <Filter
-        selectedLanguages={selectedLanguages}
-        setSelectedLanguages={setSelectedLanguages}
-        selectedLetters={selectedLetters}
-        setSelectedLetters={setSelectedLetters}
-      />
       <BooksText>BOOKS</BooksText>
       <SearchContainer>
         <SerachInput
@@ -119,6 +113,12 @@ function Books() {
         <SearchIcon />
       </SearchContainer>
       <ExelButton onClick={handleExportToExcel}>EXPORT TO EXCEL ></ExelButton>
+      <Filter
+        selectedLanguages={selectedLanguages}
+        setSelectedLanguages={setSelectedLanguages}
+        selectedLetters={selectedLetters}
+        setSelectedLetters={setSelectedLetters}
+      />
       <Table>
         <TableHead>
           <TableRow>
@@ -151,7 +151,7 @@ function Books() {
           <PaginationButton
             key={paginationStart + index}
             onClick={() => setCurrentPage(paginationStart + index + 1)}
-            active={paginationStart + index + 1 === currentPage}
+            active={paginationStart + index + 1 === currentPage }
           >
             {paginationStart + index + 1}
           </PaginationButton>

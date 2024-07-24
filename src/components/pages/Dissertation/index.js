@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { FaSearch } from "react-icons/fa";
 import {
   Table as MuiTable,
   TableHead as MuiTableHead,
@@ -6,47 +7,57 @@ import {
   TableRow as MuiTableRow,
   TableCell as MuiTableCell,
 } from "@mui/material";
+
 export const Container = styled.div`
-  border: 1px solid red;
   width: 100%;
   height: auto;
 `;
+
 export const BooksText = styled.h1`
   display: inline-block;
 `;
+
 export const Book = styled.h1`
   margin-left: 20%;
 `;
+
 export const Table = styled(MuiTable)`
   width: 80% !important;
   margin-left: 20%;
-  
+
+  @media (max-width: 545px) {
+    width: 100% !important;
+    margin-left: 0;
+  }
 `;
 
 export const TableHead = styled(MuiTableHead)`
   background-color: #f5f5f5;
-  
 `;
 
 export const TableRow = styled(MuiTableRow)`
+  height: 70px;
 
   &:nth-of-type(odd) {
     background-color: #f9f9f9;
-    
   }
 `;
 
 export const TableCell = styled(MuiTableCell)`
   padding: 8px;
   text-align: left;
-
 `;
 
 export const BookTable = styled.div`
   max-width: 80% !important;
   overflow-x: auto;
   border: 1px solid black;
+
+  @media (max-width: 545px) {
+    max-width: 100% !important;
+  }
 `;
+
 export const ExelButton = styled.button`
   float: right;
   margin-right: 1%;
@@ -63,21 +74,86 @@ export const ExelButton = styled.button`
   &:hover {
     background-color: #0056b3;
   }
+
+  @media (max-width: 545px) {
+    float: none;
+    display: block;
+    margin: 10px auto;
+  }
 `;
+
 export { MuiTableBody as TableBody };
+
 export const SerachInput = styled.input`
   padding: 14px;
   border: 2px solid #ccc;
   border-radius: 4px;
   font-size: 16px;
   margin-left: 13.6vw;
-  width: 15%;
+  width: 60%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: width 1s ease-in, border-color 1s ease-in, box-shadow 1s ease-in;
+  transition: width 0.2s ease-in, border-color 0.2s ease-in, box-shadow 0.2s ease-in;
+
   &:focus {
     border-color: #007bff;
     outline: none;
-    width: 40%;
     box-shadow: 0 2px 4px rgba(0, 123, 255, 0.2);
+  }
+
+  @media (max-width: 545px) {
+    width: 100%;
+    margin-left: 0;
+  }
+`;
+
+export const SearchContainer = styled.div`
+  display: inline-block;
+  width: 40%;
+  margin-left: 13.6vw;
+
+  @media (max-width: 545px) {
+    width: 100%;
+    margin-left: 0;
+  }
+`;
+
+export const SearchIcon = styled(FaSearch)`
+  margin-left: -7%;
+  color: #ccc;
+  margin-bottom: -1%;
+  font-size: 1.5em;
+  @media (max-width: 948px){
+    margin-left: -10%;
+  }
+  @media (max-width: 645px){
+    display: none;
+  }
+
+
+`;
+
+export const PaginationContainer = styled.div`
+  display: flex;
+  justify-content: right;
+  margin-top: 20px;
+  margin-right: 20px;
+
+  @media (max-width: 545px) {
+    justify-content: center;
+    margin-right: 0;
+  }
+`;
+
+export const PaginationButton = styled.button`
+  background-color: ${(props) => (props.active ? "#007bff" : "#fff")};
+  color: ${(props) => (props.active ? "#fff" : "#007bff")};
+  border: 1px solid #007bff;
+  padding: 10px 15px;
+  margin: 0 5px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #007bff;
+    color: #fff;
   }
 `;
