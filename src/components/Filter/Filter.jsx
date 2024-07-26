@@ -8,7 +8,7 @@ function Filter({ selectedLanguages, setSelectedLanguages, selectedLetters, setS
   const [visibleLanguagesCount, setVisibleLanguagesCount] = useState(3);
   const [visibleLettersCount, setVisibleLettersCount] = useState(3);
 
-  const { data: booksData, loading, error } = useFetch("http://library.mebel-zakaz.uz/api/v1/books/");
+  const { data: booksData, loading, error } = useFetch("https://library.mebel-zakaz.uz/api/v1/books/");
 
   useEffect(() => {
     if (booksData) {
