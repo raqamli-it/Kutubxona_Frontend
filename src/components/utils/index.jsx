@@ -14,29 +14,29 @@ export const navbar = [
   },
   {
     id: 2,
-    title: 'Books',
-    path: '/books',
+    title: 'Adabiyot',
+    path: '/adabiyot',
     component: <Books/>,
     hidden: false 
   },
   {
     id: 3,
-    title: 'Dissertation',
-    path: '/dissertation',
-    component: <Dissertation/>,
-    hidden: false 
-  },
-  {
-    id: 4,
-    title: 'Jurnal',
-    path: '/jurnal',
+    title: ' Jurnallar',
+    path: '/jurnallar',
     component: <Jurnal/>,
     hidden: false 
   },
   {
+    id: 4,
+    title: 'Dissertatsiyalar',
+    path: '/dissertatsiyalar',
+    component: <Dissertation/>,
+    hidden: false 
+  },
+  {
     id: 5,
-    title: 'Avtoreferat',
-    path: '/avtoreferat',
+    title: ' Avtoreferatlar',
+    path: '/avtoreferatlar',
     component: <Avtoreferat/>,
     hidden: false 
   }

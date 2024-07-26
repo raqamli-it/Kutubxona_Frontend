@@ -1,6 +1,5 @@
 import { styled, keyframes } from "styled-components";
 import { Link } from "react-router-dom";
-import { ReactComponent as Logo } from "../../../assets/svg/Library Logo.svg";
 import { FaBars } from "react-icons/fa";
 
 const slideDown = keyframes`
@@ -27,7 +26,7 @@ const slideUp = keyframes`
 
 export const Container = styled.div`
   width: 100%;
-  height: 70px;
+  height: 130px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -57,24 +56,55 @@ export const UILink = styled(Link)`
   transition: 0.2s all;
   padding: 0 18px;
   line-height: 40px;
+
   &:hover {
     color: #66fcf1;
     transform: scale(1.1);
     border-bottom: 3px solid #66fcf1;
     border-radius: 8px;
+
+  }
+  @media (max-width:755px) {
+      padding: 0 10px;
+  }
+  @media (max-width:675px) {
+      padding: 0 2px;
   }
 `;
-
+export const Language =styled.div`
+  width: 8%;
+  display: flex; 
+  justify-content: space-around;
+`
+export const LangText =styled.p`
+  color: white;
+  /* text-align: center; */
+  display: flex;
+  justify-content: center;
+  align-items:center; 
+  cursor: pointer;
+  ${(props) =>
+    props.isSelected &&
+    `
+    font-weight: bold;
+    color: #007BFF; // Tanlangan til uchun rang
+  `}
+`
+export const LangIcon =styled.img`
+  width: 20px;
+  border-radius: 50%;
+  height: 20px;
+`
 export const BurgerLinks = styled(FaBars)`
   color: #fff;
   display: none;
   font-size: 23px;
-  @media screen and (max-width: 605px) {
+  @media screen and (max-width: 609px) {
     display: block;
   }
 `;
 
-export const Logos = styled(Logo)`
+export const Logos = styled.img`
   width: 40px;
   height: 40px;
   & > path {
@@ -98,28 +128,31 @@ export const Title = styled.p`
 
 export const TimeDisplay = styled.div`
   font-size: 18px;
-  width: 35%;
-  margin-left: 50px;
+  width: 1%;
+  margin-left: -30px;
   color: #fff;
 `;
 
 export const NavLinks = styled.div`
   display: ${({ isVisible }) => (isVisible ? "flex" : "none")};
   flex-direction: ${({ isVisible }) => (isVisible ? "column" : "row")};
+  flex-wrap: wrap;
+  justify-content: ${({ isVisible }) => (isVisible ? " " : "space-around")};
   background-color: ${({ isVisible }) =>
     isVisible ? "rgba(0,0,0, 0.5)" : " "};
   position: ${({ isVisible }) => (isVisible ? "absolute" : " ")};
-  width: 50%;
+  width: 100% !important;
   left: 0;
-  top: 4.7%;
+  top: 13%;
   z-index: 999;
   align-items: center;
   animation: ${({ isVisible }) => (isVisible ? slideDown : slideUp)} 0.3s
     ease-out;
   overflow: hidden;
-  @media screen and (min-width: 606px) {
+  @media screen and (min-width: 610px) {
     display: flex;
-    width: auto;
+    /* width: 400px !important;/ */
+    height: auto !important;
     animation: none;
     background-color: transparent;
   }

@@ -17,38 +17,11 @@ import {
 } from "./index";
 import Filter from "../../Filter/Filter";
 import { FaSearch } from "react-icons/fa";
-
-const booksData = [
-  { title: "Book 1", language: "ENG", letter: "B", isScanned: true },
-  { title: "Book 2", language: "RUS", letter: "A", isScanned: false },
-  { title: "Book 3", language: "UZB", letter: "B", isScanned: true },
-  { title: "Book 4", language: "ENG", letter: "C", isScanned: false },
-  { title: "Book 5", language: "RUS", letter: "B", isScanned: true },
-  { title: "Book 6", language: "UZB", letter: "B", isScanned: false },
-  { title: "Book 7", language: "ESP", letter: "E", isScanned: true },
-  { title: "Book 8", language: "FRA", letter: "B", isScanned: false },
-  { title: "Book 9", language: "GER", letter: "B", isScanned: true },
-  { title: "Book 10", language: "JPN", letter: "G", isScanned: false },
-  { title: "Book 11", language: "CHN", letter: "B", isScanned: true },
-  { title: "Book 12", language: "KOR", letter: "B", isScanned: false },
-  { title: "Book 13", language: "ITA", letter: "B", isScanned: true },
-  { title: "Book 14", language: "ENG", letter: "B", isScanned: true },
-  { title: "Book 15", language: "RUS", letter: "A", isScanned: false },
-  { title: "Book 16", language: "UZB", letter: "B", isScanned: true },
-  { title: "Book 17", language: "ENG", letter: "C", isScanned: false },
-  { title: "Book 18", language: "RUS", letter: "B", isScanned: true },
-  { title: "Book 19", language: "UZB", letter: "B", isScanned: false },
-  { title: "Book 20", language: "ESP", letter: "E", isScanned: true },
-  { title: "Book 21", language: "FRA", letter: "B", isScanned: false },
-  { title: "Book 22", language: "GER", letter: "B", isScanned: true },
-  { title: "Book 23", language: "JPN", letter: "G", isScanned: false },
-  { title: "Book 24", language: "CHN", letter: "B", isScanned: true },
-  { title: "Book 25", language: "KOR", letter: "B", isScanned: false },
-  { title: "Book 26", language: "ITA", letter: "B", isScanned: true },
-];
+import useFetch from '../../Hooks/useFetchAllData'
 const ITEMS_PER_PAGE = 10;
 
 function Jurnal() {
+  const { data: booksData, loading, error } = useFetch("http://library.mebel-zakaz.uz/api/v1/magazines/");
   const [selectedLanguages, setSelectedLanguages] = useState([]);
   const [selectedLetters, setSelectedLetters] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");

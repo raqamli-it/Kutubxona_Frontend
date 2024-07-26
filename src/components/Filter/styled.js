@@ -7,7 +7,7 @@ export const Container = styled.div`
   width: 20%;
   margin: 0 auto;
   position: absolute;
-  top: 12.8%;
+  top: 19.4%;
   @media screen and (max-width: 545px) {
     display: block;
     position: relative;

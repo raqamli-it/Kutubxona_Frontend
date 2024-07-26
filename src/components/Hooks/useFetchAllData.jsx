@@ -1,31 +1,33 @@
-import { useEffect, useState } from "react";
-import { getAllDatas } from "../api/apiGetCalls";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
-const useFetchGetAllDatas = (url, page = 1, search = "") => {
-    const [data, setData] = useState(null);
-    const [loading, setLoading] = useState(false);
-    const [count, setCount] = useState(0);
+const useFetchAllData = (endpoint) => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
+  useEffect(() => {
     const fetchData = async () => {
-        setLoading(true);
-        try {
-            const response = await getAllDatas(`${url}/?title=${search}&page=${page.toString()}`);
-            console.log("API Response:", response); // Javobni konsolga chiqarish
-            setData(response.results);
-            setCount(response.count);
-        } catch (error) {
-            console.error("Fetch data error:", error);
-            return error;
-        } finally {
-            setLoading(false);
+      let allData = [];
+      let url = endpoint;
+      try {
+        while (url) {
+          const response = await axios.get(url);
+          allData = allData.concat(response.data.results);
+          url = response.data.next; // get the next page URL
         }
+        setData(allData);
+      } catch (err) {
+        setError(err);
+      } finally {
+        setLoading(false);
+      }
     };
 
-    useEffect(() => {
-        fetchData();
-    }, [url, page, search]);
+    fetchData();
+  }, [endpoint]);
 
-    return { data, loading, count, fetchData };
+  return { data, loading, error };
 };
 
-export default useFetchGetAllDatas;
+export default useFetchAllData;
