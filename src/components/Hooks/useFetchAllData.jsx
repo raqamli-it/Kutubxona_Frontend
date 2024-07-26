@@ -9,7 +9,9 @@ const useFetchAllData = (endpoint) => {
   useEffect(() => {
     const fetchData = async () => {
       let allData = [];
-      let url = endpoint;
+      let url = `${process.env.REACT_APP_API_BASE_URL}/${endpoint}`;
+      console.log("API URL: ", url); // Console.log qo'shing
+
       try {
         while (url) {
           const response = await axios.get(url);
@@ -31,3 +33,4 @@ const useFetchAllData = (endpoint) => {
 };
 
 export default useFetchAllData;
+ 

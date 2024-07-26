@@ -15,7 +15,7 @@ import {
   PaginationContainer,
   PaginationButton,
 } from "./index";
-import Filter from "../../Filter/Filter";
+import Filter from "../../Filter/BooksFilter";
 import { FaSearch } from "react-icons/fa";
 import useFetch from '../../Hooks/useFetchAllData'
 
@@ -23,7 +23,7 @@ import useFetch from '../../Hooks/useFetchAllData'
 const ITEMS_PER_PAGE = 10;
 
 function Dissertation() {
-  const { data: booksData, loading, error } = useFetch("http://library.mebel-zakaz.uz/api/v1/discusses/");
+  const { data: booksData, loading, error } = useFetch("discusses/");
   const [selectedLanguages, setSelectedLanguages] = useState([]);
   const [selectedLetters, setSelectedLetters] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");

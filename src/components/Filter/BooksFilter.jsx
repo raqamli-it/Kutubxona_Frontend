@@ -8,10 +8,10 @@ function Filter({ selectedLanguages, setSelectedLanguages, selectedLetters, setS
   const [visibleLanguagesCount, setVisibleLanguagesCount] = useState(3);
   const [visibleLettersCount, setVisibleLettersCount] = useState(3);
 
-  const { data: booksData, loading, error } = useFetch("https://library.mebel-zakaz.uz/api/v1/books/");
+  const { data: booksData, loading, error } = useFetch("books/");
 
   useEffect(() => {
-    if (booksData) {
+    if(booksData) {
       // `language_name` va `category_name` bo'yicha unique qiymatlarni ajratamiz
       const languages = [...new Set(booksData.map(item => item.language_name))];
       const letters = [...new Set(booksData.map(item => item.category_name))];
