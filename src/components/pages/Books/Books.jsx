@@ -16,7 +16,6 @@ import {
   PaginationButton,
 } from "./styled";
 import Filter from "../../Filter/BooksFilter";
-import { FaSearch } from "react-icons/fa";
 import useFetchAllData from "../../Hooks/useFetchAllData";
 
 const ITEMS_PER_PAGE = 10;
