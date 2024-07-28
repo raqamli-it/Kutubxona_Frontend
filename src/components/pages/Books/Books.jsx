@@ -28,7 +28,7 @@ function Books() {
   const [currentPage, setCurrentPage] = useState(1);
   const [paginationStart, setPaginationStart] = useState(0);
 
-  const uniqueLanguages = [...new Set(booksData.map(book => book.language_name))];
+  const uniqueLanguages = booksData ? [...new Set(booksData.map(book => book.language_name).filter(Boolean))] : [];
   const uniqueLetters = [...new Set(booksData.map(book => book.category_name))];
 
   const filteredBooks = booksData.filter((book) => {
