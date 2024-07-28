@@ -13,8 +13,8 @@ function Filter({ selectedLanguages, setSelectedLanguages, selectedLetters, setS
   useEffect(() => {
     if(booksData) {
       // `language_name` va `category_name` bo'yicha unique qiymatlarni ajratamiz
-      const languages = [...new Set(booksData.map(item => item.language_name))];
-      const letters = [...new Set(booksData.map(item => item.category_name))];
+      const languages = [...new Set(booksData.map(book => book.language_name))];
+      const letters = [...new Set(booksData.map(book => book.category_name))];
 
       setAllLanguages(languages);
       setAllLetters(letters);

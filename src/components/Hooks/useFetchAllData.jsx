@@ -10,7 +10,7 @@ const useFetchAllData = (endpoint) => {
     const fetchData = async () => {
       let allData = [];
       let url = `${process.env.REACT_APP_API_BASE_URL}/${endpoint}`;
-      console.log("API URL: ", url); // Console.log qo'shing
+      console.log("API URL: ", url);
 
       try {
         while (url) {
@@ -33,4 +33,3 @@ const useFetchAllData = (endpoint) => {
 };
 
 export default useFetchAllData;
- 

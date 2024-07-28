@@ -28,13 +28,32 @@ function Books() {
   const [currentPage, setCurrentPage] = useState(1);
   const [paginationStart, setPaginationStart] = useState(0);
 
-  const uniqueLanguages = booksData ? [...new Set(booksData.map(book => book.language_name).filter(Boolean))] : [];
-  const uniqueLetters = [...new Set(booksData.map(book => book.category_name))];
+  const uniqueLanguages =
+    booksData && booksData.length > 0
+      ? [
+          ...new Set(
+            booksData
+              .map((book) => book.language_name)
+              .filter((language_name) => language_name !== undefined)
+          ),
+        ]
+      : [];
+  const uniqueLetters = [
+    ...new Set(booksData.map((book) => book.category_name)),
+  ];
 
   const filteredBooks = booksData.filter((book) => {
-    const languageMatch = selectedLanguages.length > 0 ? selectedLanguages.includes(book.language_name) : true;
-    const letterMatch = selectedLetters.length > 0 ? selectedLetters.includes(book.category_name) : true;
-    const searchMatch = book.title.toLowerCase().includes(searchTerm.toLowerCase());
+    const languageMatch =
+      selectedLanguages.length > 0
+        ? selectedLanguages.includes(book.language_name)
+        : true;
+    const letterMatch =
+      selectedLetters.length > 0
+        ? selectedLetters.includes(book.category_name)
+        : true;
+    const searchMatch = book.title
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase());
 
     return languageMatch && letterMatch && searchMatch;
   });
@@ -109,9 +128,13 @@ function Books() {
           {paginatedBooks.length > 0 ? (
             paginatedBooks.map((book, index) => (
               <TableRow key={index}>
-                <TableCell>{(currentPage - 1) * ITEMS_PER_PAGE + index + 1}</TableCell>
+                <TableCell>
+                  {(currentPage - 1) * ITEMS_PER_PAGE + index + 1}
+                </TableCell>
                 <TableCell>{book.title}</TableCell>
-                <TableCell>{book.scan ? "Skaner qilingan ✅" : "Skaner qilinmagan ❎"}</TableCell>
+                <TableCell>
+                  {book.scan ? "Skaner qilingan ✅" : "Skaner qilinmagan ❎"}
+                </TableCell>
                 <TableCell>{book.language_name}</TableCell>
                 <TableCell>{book.category_name}</TableCell>
               </TableRow>
@@ -129,15 +152,18 @@ function Books() {
             &lt;
           </PaginationButton>
         )}
-        {Array.from({ length: Math.min(3, totalPages - paginationStart) }, (_, index) => (
-          <PaginationButton
-            key={paginationStart + index}
-            onClick={() => setCurrentPage(paginationStart + index + 1)}
-            active={paginationStart + index + 1 === currentPage}
-          >
-            {paginationStart + index + 1}
-          </PaginationButton>
-        ))}
+        {Array.from(
+          { length: Math.min(3, totalPages - paginationStart) },
+          (_, index) => (
+            <PaginationButton
+              key={paginationStart + index}
+              onClick={() => setCurrentPage(paginationStart + index + 1)}
+              active={paginationStart + index + 1 === currentPage}
+            >
+              {paginationStart + index + 1}
+            </PaginationButton>
+          )
+        )}
         {paginationStart + 3 < totalPages && (
           <PaginationButton onClick={handleNextPagination}>
             &gt;
