@@ -69,18 +69,30 @@ function Books() {
     const exportData = filteredBooks.map((book, index) => ({
       No: (currentPage - 1) * ITEMS_PER_PAGE + index + 1,
       title: book.title,
-      language: book.language_name,
-      letter: book.category_name,
-      isScanned: book.scan ? "Skaner qilingan ✅" : "Skaner qilinmagan ❎",
+      Til: book.language_name,
+      Qator: book.category_name,
+      Nusxalangan: book.scan ? "Skaner qilingan ✅" : "Skaner qilinmagan ❎",
     }));
+    
+    // Add a summary row at the end of the data
+    exportData.push({
+      No: '',
+      title: 'Total Books',
+      Til: '',
+      Qator: '',
+      Nusxalangan: filteredBooks.length
+    });
+  
     const ws = XLSX.utils.json_to_sheet(exportData, {
-      header: ["No", "title", "language", "letter", "isScanned"],
+      header: ["No", "title", "Nusxalangan", "Til", "Qator"],
       skipHeader: false,
     });
+  
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, "Books");
     XLSX.writeFile(wb, "books.xlsx");
   };
+  
 
   const handleNextPagination = () => {
     setPaginationStart((prev) => Math.min(prev + 3, totalPages - 3));
@@ -95,7 +107,6 @@ function Books() {
 
   return (
     <Container>
-      <BooksText>BOOKS</BooksText>
       <SearchContainer>
         <SerachInput
           type="text"
@@ -104,8 +115,8 @@ function Books() {
           onChange={(e) => setSearchTerm(e.target.value)}
         />
         <SearchIcon />
+        <ExelButton onClick={handleExportToExcel}>EXPORT TO EXCEL ></ExelButton>
       </SearchContainer>
-      <ExelButton onClick={handleExportToExcel}>EXPORT TO EXCEL ></ExelButton>
       <Filter
         allLanguages={uniqueLanguages}
         allLetters={uniqueLetters}
@@ -113,15 +124,16 @@ function Books() {
         setSelectedLanguages={setSelectedLanguages}
         selectedLetters={selectedLetters}
         setSelectedLetters={setSelectedLetters}
+        filteredBooksCount={filteredBooks.length} // Passing filteredBooksCount
       />
       <Table>
         <TableHead>
-          <TableRow>
-            <TableCell>#</TableCell>
-            <TableCell>Title</TableCell>
-            <TableCell>Scanned</TableCell>
-            <TableCell>Language</TableCell>
-            <TableCell>Letter</TableCell>
+          <TableRow className="th">
+            <TableCell className="thc">#</TableCell>
+            <TableCell className="thc">Title</TableCell>
+            <TableCell className="thc">Nusxalangan</TableCell>
+            <TableCell className="thc">Til</TableCell>
+            <TableCell className="thc">Qator</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -133,7 +145,7 @@ function Books() {
                 </TableCell>
                 <TableCell>{book.title}</TableCell>
                 <TableCell>
-                  {book.scan ? "Skaner qilingan ✅" : "Skaner qilinmagan ❎"}
+                  {book.scan ? "Skaner qilingan ✅" : "Skaner qilinmagan ❌"}
                 </TableCell>
                 <TableCell>{book.language_name}</TableCell>
                 <TableCell>{book.category_name}</TableCell>

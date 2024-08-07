@@ -37,22 +37,21 @@ export const TableHead = styled(MuiTableHead)`
 
 export const TableRow = styled(MuiTableRow)`
   height: 70px;
-
   &:nth-of-type(odd) {
-    background-color: #f9f9f9;
+    background-color: rgba(253,253,253);
+  
   }
 `;
 
 export const TableCell = styled(MuiTableCell)`
   padding: 8px;
   text-align: left;
+  border-color: white !important;
 `;
 
 export const BookTable = styled.div`
   max-width: 80% !important;
   overflow-x: auto;
-  border: 1px solid black;
-
   @media (max-width: 545px) {
     max-width: 100% !important;
   }
@@ -89,17 +88,19 @@ export const SerachInput = styled.input`
   border: 2px solid #ccc;
   border-radius: 4px;
   font-size: 16px;
-  margin-left: 13.6vw;
-  width: 60%;
+  width: 17.5%;
+  background-color: transparent;
+  color: white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: width 0.2s ease-in, border-color 0.2s ease-in, box-shadow 0.2s ease-in;
-
   &:focus {
-    border-color: #007bff;
+    border-color: #fff;
     outline: none;
     box-shadow: 0 2px 4px rgba(0, 123, 255, 0.2);
   }
-
+  &::placeholder{
+    color: white;
+  }
   @media (max-width: 545px) {
     width: 100%;
     margin-left: 0;
@@ -107,10 +108,11 @@ export const SerachInput = styled.input`
 `;
 
 export const SearchContainer = styled.div`
-  display: inline-block;
-  width: 40%;
-  margin-left: 13.6vw;
-
+  display: inline-flex;
+  width: 100%;
+  padding: 0 0 0 60px;
+  background-color: #1c2541;
+  justify-content: space-between;
   @media (max-width: 545px) {
     width: 100%;
     margin-left: 0;
@@ -118,9 +120,9 @@ export const SearchContainer = styled.div`
 `;
 
 export const SearchIcon = styled(FaSearch)`
-  margin-left: -7%;
+  margin-left: -74%;
   color: #ccc;
-  margin-bottom: -1%;
+  margin-top: 1%;
   font-size: 1.5em;
   @media (max-width: 948px){
     margin-left: -10%;

@@ -24,7 +24,6 @@ export const Book = styled.h1`
 export const Table = styled(MuiTable)`
   width: 80% !important;
   margin-left: 20%;
-
   @media (max-width: 545px) {
     width: 100% !important;
     margin-left: 0;
@@ -32,27 +31,31 @@ export const Table = styled(MuiTable)`
 `;
 
 export const TableHead = styled(MuiTableHead)`
-  background-color: #f5f5f5;
+  /* background-color: #495057 ; */
 `;
 
 export const TableRow = styled(MuiTableRow)`
   height: 70px;
-
+  width: 100%;
+  background-color: white;
   &:nth-of-type(odd) {
-    background-color: #f9f9f9;
+    /* background-color: #adb5bd; */
+    background-color: #2C3E61F2;
+    &>td{
+      color: white !important;
+    }
   }
 `;
 
 export const TableCell = styled(MuiTableCell)`
   padding: 8px;
-  text-align: left;
+  display: flex;
+  flex-wrap: wrap;
 `;
 
 export const BookTable = styled.div`
   max-width: 80% !important;
   overflow-x: auto;
-  border: 1px solid black;
-
   @media (max-width: 545px) {
     max-width: 100% !important;
   }
@@ -68,7 +71,7 @@ export const ExelButton = styled.button`
   border-radius: 4px;
   cursor: pointer;
   font-size: 14px;
-  margin-top: 4px;
+  margin-top: 8px;
   transition: background-color 0.3s ease;
 
   &:hover {
@@ -89,15 +92,22 @@ export const SerachInput = styled.input`
   border: 2px solid #ccc;
   border-radius: 4px;
   font-size: 16px;
-  margin-left: 13.6vw;
-  width: 60%;
+  width: 16.5%;
+  height: 50px;
+  margin-left: 65px;
+  margin-top: 8px;
+  background-color:white;
+  color: black;
+  z-index: 999;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: width 0.2s ease-in, border-color 0.2s ease-in, box-shadow 0.2s ease-in;
-
   &:focus {
-    border-color: #007bff;
+    /* border-color: #007bff; */
     outline: none;
     box-shadow: 0 2px 4px rgba(0, 123, 255, 0.2);
+  }
+  &::placeholder{
+    color: black;
   }
 
   @media (max-width: 545px) {
@@ -107,10 +117,12 @@ export const SerachInput = styled.input`
 `;
 
 export const SearchContainer = styled.div`
-  display: inline-block;
-  width: 40%;
-  margin-left: 13.6vw;
-
+  display: flex;
+  width: 100%;
+  height: 60px;
+  justify-content: space-between;
+  background-color: #311E5C;
+  /* margin-left: 6.1vw; */
   @media (max-width: 545px) {
     width: 100%;
     margin-left: 0;
@@ -118,17 +130,20 @@ export const SearchContainer = styled.div`
 `;
 
 export const SearchIcon = styled(FaSearch)`
-  margin-left: -7%;
+  margin-left: -72.5%;
   color: #ccc;
-  margin-bottom: -1%;
+  margin-top: 1%;
+  z-index: 999;
   font-size: 1.5em;
   @media (max-width: 948px){
     margin-left: -10%;
   }
-  @media (max-width: 645px){
+  @media (max-width: 1019px){
     display: none;
   }
-
+  @media (max-width: 1300px){
+    margin-left: -67%;
+  }
 
 `;
 

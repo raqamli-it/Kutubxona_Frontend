@@ -9,27 +9,28 @@ import {
   FilterText,
   Text,
   Wrapper,
-} from "./styled";
-import Checkbox from "./chekbox/chekbox";
-import useFetch from "../Hooks/useFetchAllData";
+} from "./Jurnalstyled";
+import useFetch from "../Hooks/useFetchAllData"; // `useFetch` hook'ning to'liq yo'li
 
 function Filter({
   selectedLanguages,
   setSelectedLanguages,
   selectedLetters,
   setSelectedLetters,
-  filteredBooksCount, // Receiving filteredBooksCount
 }) {
   const [allLanguages, setAllLanguages] = useState([]);
   const [allLetters, setAllLetters] = useState([]);
   const [visibleLanguagesCount, setVisibleLanguagesCount] = useState(3);
   const [visibleLettersCount, setVisibleLettersCount] = useState(3);
 
-  const { data: booksData, loading, error } = useFetch("books/");
+  const { data: booksData, loading, error } = useFetch("magazines/");
 
   useEffect(() => {
     if (booksData) {
-      const languages = [...new Set(booksData.map((book) => book.language_name))];
+      // `language_name` va `category_name` bo'yicha unique qiymatlarni ajratamiz
+      const languages = [
+        ...new Set(booksData.map((book) => book.language_name)),
+      ];
       const letters = [...new Set(booksData.map((book) => book.category_name))];
 
       setAllLanguages(languages);
@@ -75,16 +76,16 @@ function Filter({
           {allLanguages.slice(0, visibleLanguagesCount).map((lang) => (
             <LanguageText key={lang}>
               {lang}
-              <Checkbox
-                id={`checkbox-${lang}`}
+              <CheckboxInput
+                type="checkbox"
                 value={lang}
-                checked={selectedLanguages.includes(lang)}
                 onChange={handleLanguageCheckboxChange}
+                checked={selectedLanguages.includes(lang)}
               />
             </LanguageText>
           ))}
           {visibleLanguagesCount < allLanguages.length && (
-            <MoreButton onClick={handleMoreLanguages}>More Languages</MoreButton>
+            <MoreButton onClick={handleMoreLanguages}>Boshqa Tillar</MoreButton>
           )}
         </Language>
         <Letter>
@@ -92,19 +93,18 @@ function Filter({
           {allLetters.slice(0, visibleLettersCount).map((letter) => (
             <LanguageText key={letter}>
               {letter}
-              <Checkbox
-                id={`checkbox-${letter}`}
+              <CheckboxInput
+                type="checkbox"
                 value={letter}
-                checked={selectedLetters.includes(letter)}
                 onChange={handleLetterCheckboxChange}
+                checked={selectedLetters.includes(letter)}
               />
             </LanguageText>
           ))}
           {visibleLettersCount < allLetters.length && (
-            <MoreButton onClick={handleMoreLetters}>More Categories</MoreButton>
+            <MoreButton onClick={handleMoreLetters}>Boshqa Harflar</MoreButton>
           )}
         </Letter>
-        <Text>Total Books: {filteredBooksCount}</Text>
       </Wrapper>
     </Container>
   );

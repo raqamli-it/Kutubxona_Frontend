@@ -15,7 +15,7 @@ import {
   PaginationContainer,
   PaginationButton,
 } from "./index";
-import Filter from "../../Filter/BooksFilter";
+import Filter from "../../Filter/JurnalFilter";
 import { FaSearch } from "react-icons/fa";
 import useFetch from '../../Hooks/useFetchAllData'
 const ITEMS_PER_PAGE = 10;
@@ -30,13 +30,11 @@ function Jurnal() {
 
   const filteredBooks = booksData.filter((book) => {
     const languageMatch =
-      selectedLanguages.length > 0
-        ? selectedLanguages.includes(book.language)
-        : true;
+      selectedLanguages.length > 0 ? selectedLanguages.includes(book.language_name) : true;
     const letterMatch =
-      selectedLetters.length > 0 ? selectedLetters.includes(book.letter) : true;
+      selectedLetters.length > 0 ? selectedLetters.includes(book.category_name) : true;
     const searchMatch =
-      book.title.toLowerCase().includes(searchTerm.toLowerCase())
+      book.title.toLowerCase().includes(searchTerm.toLowerCase());
     return languageMatch && letterMatch && searchMatch;
   });
 
@@ -48,25 +46,22 @@ function Jurnal() {
   );
 
   const handleExportToExcel = () => {
-    // Export qilish uchun faqat tartib raqam va sarlavhadan iborat ma'lumotlarni tayyorlash
     const exportData = filteredBooks.map((book, index) => ({
-      No: (currentPage - 1) * filteredBooks.length + index + 1, // Tartib raqam
-      title: book.title, // Sarlavha
+      No: (currentPage - 1) * filteredBooks.length + index + 1,
+      title: book.title,
     }));
-  
-    // Excel uchun yangi varaqlarni yaratish
+
     const ws = XLSX.utils.json_to_sheet(exportData, {
-      header: ["No", "title"], // Excel ustunlari
-      skipHeader: false, // Ustun nomlarini qo'shish
+      header: ["No", "title"],
+      skipHeader: false,
     });
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, "Books");
-  
-    // Excel faylini yaratish
+
     const fileName = `books_${new Date().toISOString().slice(0, 10)}.xlsx`;
     XLSX.writeFile(wb, fileName);
   };
-  
+
   const handleNextPagination = () => {
     setPaginationStart((prev) => Math.min(prev + 3, totalPages - 3));
   };
@@ -77,7 +72,6 @@ function Jurnal() {
 
   return (
     <Container>
-      <BooksText>JURNAL</BooksText>
       <SearchContainer>
         <SerachInput
           type="text"
@@ -86,8 +80,8 @@ function Jurnal() {
           onChange={(e) => setSearchTerm(e.target.value)}
         />
         <SearchIcon />
-      </SearchContainer>
       <ExelButton onClick={handleExportToExcel}>EXPORT TO EXCEL ></ExelButton>
+      </SearchContainer>
       <Filter
         selectedLanguages={selectedLanguages}
         setSelectedLanguages={setSelectedLanguages}
@@ -97,9 +91,8 @@ function Jurnal() {
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell>#</TableCell>
-            <TableCell>Title</TableCell>
-        
+            <TableCell className="thJ">#</TableCell>
+            <TableCell className="thJ">Title</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -121,7 +114,7 @@ function Jurnal() {
           <PaginationButton
             key={paginationStart + index}
             onClick={() => setCurrentPage(paginationStart + index + 1)}
-            active={paginationStart + index + 1 === currentPage }
+            active={paginationStart + index + 1 === currentPage}
           >
             {paginationStart + index + 1}
           </PaginationButton>

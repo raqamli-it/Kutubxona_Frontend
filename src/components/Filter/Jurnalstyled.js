@@ -2,16 +2,16 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   padding: 16px;
-  background-color: #311E5C;
+  background-color: #1c2541;
   color: white;
   width: 20%;
-  min-height: 205vh;
+  min-height: 81vh;
   margin: 0 auto;
-  position: fixed; 
+  position: absolute;
   display: flex;
-  top: -5%;
   flex-direction: column;
   justify-content: space-between;
+  /* top: 20.%; */
   @media screen and (max-width: 545px) {
     display: block;
     position: relative;
@@ -47,7 +47,7 @@ export const Container = styled.div`
   }
 `;
 export const Wrapper =styled.div`
-  margin-top: 85%;
+
 `
 export const Language = styled.div`
   width: 100%;
@@ -82,8 +82,6 @@ export const CheckboxInput = styled.input`
   margin-right: 20px;
   width: 16px;
   height: 16px;
-  position: fixed;
-  z-index: 999;
 `;
 // export const CheckboxInput = styled.input.attrs({ type: 'checkbox' })`
 //   margin-left: 8px;

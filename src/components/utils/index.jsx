@@ -10,7 +10,7 @@ export const navbar = [
     title: 'Home',
     path: '/home',
     component: <Home/>,
-    hidden: false 
+    hidden: true 
   },
   {
     id: 2,

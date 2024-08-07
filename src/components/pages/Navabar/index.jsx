@@ -1,15 +1,25 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { UILink, Container, Logos, LogoContainer, Title, NavLinks, SocialIcons, IconLink, TimeDisplay, BurgerLinks, Language, LangText, LangIcon } from './styled';
+import moment from 'moment-hijri';
+import 'moment/locale/uz-latn';
+import 'moment/locale/uz';
+import { useNavigate, useLocation, Outlet } from 'react-router-dom';
+import { Container, Logos, LogoContainer, Title, NavLinks, UILink, TimeDisplay, BurgerLinks, CalendarWrapper } from './styled';
+import Logo from '../../../assets/img/logo (1).png';
+import WeatherSide from './weather/Weather';
+import Calendar from 'react-calendar';
 import { navbar } from '../../utils';
-import Logo  from "../../../assets/img/logo (1).png";
-import { Outlet, useNavigate } from 'react-router-dom';
-import { FaTelegramPlane, FaInstagram, FaFacebookF } from 'react-icons/fa';
+import 'react-calendar/dist/Calendar.css';
 
 function Navbar() {
   const [time, setTime] = useState(new Date().toLocaleTimeString());
   const [isNavLinksVisible, setIsNavLinksVisible] = useState(false);
-  const [selectedLanguage, setSelectedLanguage] = useState('UZB');
+  const [gregorianDate, setGregorianDate] = useState(moment().format('YYYY-yil DD-MMM'));
+  const [hijriDate, setHijriDate] = useState(moment().format('iYYYY-yil iD-iMMMM'));
+  const [date, setDate] = useState(new Date());
+  const [calendarOpen, setCalendarOpen] = useState(false);
+
   const navigate = useNavigate();
+  const location = useLocation();
   const navLinksRef = useRef(null);
 
   useEffect(() => {
@@ -32,6 +42,11 @@ function Navbar() {
     };
   }, []);
 
+  useEffect(() => {
+    setGregorianDate(moment(date).format('YYYY-yil DD-MMM'));
+    setHijriDate(moment(date).format('iYYYY-yil iD-iMMMM'));
+  }, [date]);
+
   const handleLogoClick = () => {
     navigate('/');
     window.location.reload();
@@ -41,37 +56,48 @@ function Navbar() {
     setIsNavLinksVisible(!isNavLinksVisible);
   };
 
-  const handleLanguageChange = (language) => {
-    setSelectedLanguage(language);
-    // add additional logic here to change the app's language
+  const toggleCalendar = () => {
+    setCalendarOpen(!calendarOpen);
+  };
+
+  const onDateChange = (newDate) => {
+    setDate(newDate);
+    setCalendarOpen(false);
   };
 
   return (
     <Container>
       <LogoContainer onClick={handleLogoClick}>
         <Logos src={Logo} />
-        <Title>Fanlar akademiyasi Tarix institutining kutubxonasi</Title>
+        <Title>Fanlat Akademiyasi Tarix <br /> Institutining kutubxonasi</Title>
       </LogoContainer>
-      <Language>
-        <LangText onClick={() => handleLanguageChange('UZB')} isSelected={selectedLanguage === 'UZB'}>
-          <LangIcon src='https://upload.wikimedia.org/wikipedia/commons/8/84/Flag_of_Uzbekistan.svg'></LangIcon> UZB
-        </LangText>
-        <LangText onClick={() => handleLanguageChange('RUS')} isSelected={selectedLanguage === 'RUS'}>
-          <LangIcon src='https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Flag_of_Russia.png/640px-Flag_of_Russia.png'></LangIcon> RUS
-        </LangText>
-      </Language>
-      <SocialIcons>
-        <IconLink href="https://telegram.org" target="_blank"><FaTelegramPlane /></IconLink>
-        <IconLink href="https://instagram.com" target="_blank"><FaInstagram /></IconLink>
-        <IconLink href="https://facebook.com" target="_blank"><FaFacebookF /></IconLink>
-      </SocialIcons>
-      <BurgerLinks onClick={toggleNavLinks} />
+      <TimeDisplay>
+        {time}
+      </TimeDisplay>
+      <TimeDisplay className='Aug' onClick={toggleCalendar}>
+        <i className="fa fa-calendar" aria-hidden="true"></i> <p>{gregorianDate} | {hijriDate}</p>
+      {calendarOpen && (
+        <CalendarWrapper>
+          <Calendar onChange={onDateChange} value={date} />
+        </CalendarWrapper>
+      )}
+      </TimeDisplay>
+      <TimeDisplay>
+        <WeatherSide />
+      </TimeDisplay>
       <NavLinks ref={navLinksRef} isVisible={isNavLinksVisible}>
-        {navbar.map(({ id, title, path }) => (
-          <UILink key={id} to={path} onClick={() => setIsNavLinksVisible(false)}>{title}</UILink>
+        {navbar.filter(link => !link.hidden).map(({ id, title, path }) => (
+          <UILink
+            key={id}
+            to={path}
+            onClick={() => setIsNavLinksVisible(false)}
+            isSelected={location.pathname === path}
+          >
+            {title}
+          </UILink>
         ))}
-        <TimeDisplay>{time}</TimeDisplay>
       </NavLinks>
+      <BurgerLinks onClick={toggleNavLinks} />
       <Outlet />
     </Container>
   );

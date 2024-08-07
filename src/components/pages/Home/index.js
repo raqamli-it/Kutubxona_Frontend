@@ -6,11 +6,15 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
 `;
 export const LibraryImg = styled.img`
   width: 100%;
-  height: 90vh;
-  margin-top: 1%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  z-index: 999;
+  filter: brightness(0.3);
 `;
 export const Button = styled.button`
   width: 8%;
@@ -23,6 +27,7 @@ export const Button = styled.button`
   border: none;
   color: white;
   font-size: 15px;
+  z-index: 999;
   transition: .3s ease-in-out;
   &:hover{
     transition: .3s ease-in-out;

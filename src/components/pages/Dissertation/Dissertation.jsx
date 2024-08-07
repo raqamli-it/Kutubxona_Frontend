@@ -15,7 +15,7 @@ import {
   PaginationContainer,
   PaginationButton,
 } from "./index";
-import Filter from "../../Filter/BooksFilter";
+import Filter from "../../Filter/DisertatsiyaFilter";
 import { FaSearch } from "react-icons/fa";
 import useFetch from '../../Hooks/useFetchAllData'
 

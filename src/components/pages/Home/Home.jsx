@@ -1,54 +1,73 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container, LibraryImg, Button } from "./index";
 import LIMG from "../../../assets/img/library-1-th.png";
 import { TypeAnimation } from "react-type-animation";
 
 function Home() {
-  const navigate = useNavigate(); // navigate hookini chaqiring
+  const navigate = useNavigate();
 
-  const handleClick = () => {
-    navigate("/books"); // navigate() orqali yo'naltirish
-  };
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      navigate("/adabiyot");
+    }, 5000);
+
+    return () => clearTimeout(timer); 
+  }, [navigate]);
 
   return (
-    <Container>
-      <LibraryImg src={LIMG} alt="Library" />{" "}
+    <Container >
+      <LibraryImg
+        src={LIMG}
+        alt="Library"
+      />
       <TypeAnimation
         sequence={[
-          "Welcome",
+          "Fanlar",
           400,
-          "Welcome to ",
+          "Fanlar Akademiyasi",
           400,
-          "Welcome to the Library",
+          "Fanlar Akademiyasi Tarix",
           400,
-          "Welcome to the",
+          "Fanlar Akademiyasi Tarix institutining",
           400,
-          "Welcome",
+          "Fanlar Akademiyasi Tarix institutining Kutubxonasi",
           400,
-          " ",
         ]}
         style={{
-          fontSize: "2em",
+          // fontSize: "3em",
           position: "absolute",
           color: "white",
-          fontSize: "55px",
+          top: "25%",
+          left: "50%",
+          transform: "translateX(-50%)",
+          fontSize: "85px",
+          zIndex: 999,
+          textAlign: "center",
         }}
-        repeat={Infinity}
       />
-      <Button onClick={handleClick}>
+      {/* <Button
+        // onClick={() => navigate("/adabiyot")}
+        style={{
+          position: "absolute",
+          bottom: "10%",
+          left: "50%",
+          transform: "translateX(-50%)",
+          zIndex: 999,
+        }}
+      >
         <TypeAnimation
           sequence={[
             "Go",
             100,
-            "Go to", //  Continuing previous Text
+            "Go to", // Continuing previous Text
             100,
             "Go to library >",
-            100
+            100,
           ]}
           style={{ fontSize: "1em" }}
         />
-      </Button>
+      </Button> */}
     </Container>
   );
 }
