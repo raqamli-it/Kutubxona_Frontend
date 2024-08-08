@@ -27,6 +27,7 @@ function Books() {
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [paginationStart, setPaginationStart] = useState(0);
+  const [isFilterModalVisible, setIsFilterModalVisible] = useState(false);
 
   const uniqueLanguages =
     booksData && booksData.length > 0
@@ -74,7 +75,6 @@ function Books() {
       Nusxalangan: book.scan ? "Skaner qilingan ✅" : "Skaner qilinmagan ❎",
     }));
     
-    // Add a summary row at the end of the data
     exportData.push({
       No: '',
       title: 'Total Books',
@@ -92,7 +92,6 @@ function Books() {
     XLSX.utils.book_append_sheet(wb, ws, "Books");
     XLSX.writeFile(wb, "books.xlsx");
   };
-  
 
   const handleNextPagination = () => {
     setPaginationStart((prev) => Math.min(prev + 3, totalPages - 3));
@@ -116,6 +115,7 @@ function Books() {
         />
         <SearchIcon />
         <ExelButton onClick={handleExportToExcel}>EXPORT TO EXCEL ></ExelButton>
+        {/* <button onClick={() => setIsFilterModalVisible(true)}>Open Filter</button> */}
       </SearchContainer>
       <Filter
         allLanguages={uniqueLanguages}
@@ -124,8 +124,15 @@ function Books() {
         setSelectedLanguages={setSelectedLanguages}
         selectedLetters={selectedLetters}
         setSelectedLetters={setSelectedLetters}
-        filteredBooksCount={filteredBooks.length} // Passing filteredBooksCount
+        filteredBooksCount={filteredBooks.length}
       />
+      {/* {isFilterModalVisible && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <button onClick={() => setIsFilterModalVisible(false)}>Close</button>
+          </div>
+        </div>
+      )} */}
       <Table>
         <TableHead>
           <TableRow className="th">
@@ -140,16 +147,16 @@ function Books() {
           {paginatedBooks.length > 0 ? (
             paginatedBooks.map((book, index) => (
               <TableRow key={index}>
-                <TableCell>
-                  {(currentPage - 1) * ITEMS_PER_PAGE + index + 1}
-                </TableCell>
-                <TableCell>{book.title}</TableCell>
-                <TableCell>
-                  {book.scan ? "Skaner qilingan ✅" : "Skaner qilinmagan ❌"}
-                </TableCell>
-                <TableCell>{book.language_name}</TableCell>
-                <TableCell>{book.category_name}</TableCell>
-              </TableRow>
+              <TableCell>
+                {(currentPage - 1) * ITEMS_PER_PAGE + index + 1}
+              </TableCell>
+              <TableCell className="title">{book.title}</TableCell>
+              <TableCell className="flex">
+                {book.scan ? <p className="flex">Skaner qilingan <span>✅</span></p> : <p className="flex">Skaner qilinmagan <span>❌</span></p>}
+              </TableCell>
+              <TableCell>{book.language_name}</TableCell>
+              <TableCell>{book.category_name}</TableCell>
+            </TableRow>
             ))
           ) : (
             <TableRow>

@@ -69,7 +69,7 @@ function Navbar() {
     <Container>
       <LogoContainer onClick={handleLogoClick}>
         <Logos src={Logo} />
-        <Title>Fanlat Akademiyasi Tarix <br /> Institutining kutubxonasi</Title>
+        <Title>FA Tarix institutining <br /> kutubxonasi</Title>
       </LogoContainer>
       <TimeDisplay>
         {time}

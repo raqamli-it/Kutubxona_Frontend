@@ -24,7 +24,8 @@ export const Book = styled.h1`
 export const Table = styled(MuiTable)`
   width: 80% !important;
   margin-left: 20%;
-  @media (max-width: 545px) {
+
+  @media (max-width: 950px) {
     width: 100% !important;
     margin-left: 0;
   }
@@ -33,7 +34,22 @@ export const Table = styled(MuiTable)`
 export const TableHead = styled(MuiTableHead)`
   /* background-color: #495057 ; */
 `;
+export const FilterButton = styled.button`
+  margin-left: 10px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 
+  &:hover {
+    background-color: #0056b3;
+  }
+`;
+export const Modal =styled.button`
+  
+`
 export const TableRow = styled(MuiTableRow)`
   height: 70px;
   width: 100%;

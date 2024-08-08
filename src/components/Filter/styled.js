@@ -5,7 +5,7 @@ export const Container = styled.div`
   background-color: #311E5C;
   color: white;
   width: 20%;
-  min-height: 205vh;
+  min-height: 150vh;
   margin: 0 auto;
   position: fixed; 
   display: flex;
@@ -16,38 +16,44 @@ export const Container = styled.div`
     display: block;
     position: relative;
     width: 100%;
-    
   }
-  @media (max-width:1880px){
-    margin-top: 1%;
-  }
-  @media (max-width:1698px){
-    margin-top: 1.1%;
-  }
-  @media (max-width:1537px){
-    margin-top: 1.2%;
-  }
-  @media (max-width:1409px){
-    margin-top: 1.3%;
-  }
-   @media (max-width:1301px){
-    margin-top: 1.4%;
-  }
-  @media (max-width:1208px){
-    margin-top: 1.5%;
-  }
-  @media (max-width:1087px){
-    margin-top: 1.6%;
-  }
-  @media (max-width:1019px){
-    margin-top: 1.7%;
-  }
-  @media (max-width: 910px) {
-      top: 21%;
+  @media (max-width: 950px) {
+    display: none;
+    position: absolute;
+    & .show{
+      display: block;
+    }
   }
 `;
 export const Wrapper =styled.div`
   margin-top: 85%;
+  @media (max-width: 1800px) {
+    margin-top: 95%;
+  }
+  @media (max-width: 1700px) {
+    margin-top: 100%;
+  }
+  @media (max-width: 1600px) {
+    margin-top: 105%;
+  }
+  @media (max-width: 1500px) {
+    margin-top: 110%;
+  }
+  @media (max-width: 1400px) {
+    margin-top: 120%;
+  }
+  @media (max-width: 1300px) {
+    margin-top: 130%;
+  }
+  @media (max-width: 1200px) {
+    margin-top: 140%;
+  }
+  @media (max-width: 1100px) {
+    margin-top: 160%;
+  }
+  @media (max-width: 1000px) {
+    margin-top: 180%;
+  }
 `
 export const Language = styled.div`
   width: 100%;
