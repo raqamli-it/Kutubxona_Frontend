@@ -62,7 +62,7 @@ export const TableRow = styled(MuiTableRow)`
   width: 100%;
   background-color: white;
   border: none;
-  &:nth-of-type(odd) {
+  &:nth-of-type(even) {
     /* background-color: #adb5bd; */
     background-color: #2C3E61F2;
     &>td{
