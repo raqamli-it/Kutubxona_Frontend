@@ -11,6 +11,8 @@ import {
 export const Container = styled.div`
   width: 100%;
   height: auto;
+  position: relative;
+  background-color: #311E5C;
 `;
 
 export const BooksText = styled.h1`
@@ -20,39 +22,66 @@ export const BooksText = styled.h1`
 export const Book = styled.h1`
   margin-left: 20%;
 `;
-
+export const Wrapper =styled.div`
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: start;
+  align-items: start;
+`
 export const Table = styled(MuiTable)`
   width: 80% !important;
-  margin-left: 20%;
 
-  @media (max-width: 545px) {
+
+  @media (max-width: 950px) {
     width: 100% !important;
     margin-left: 0;
   }
 `;
 
 export const TableHead = styled(MuiTableHead)`
-  background-color: #f5f5f5;
+  /* background-color: #495057 ; */
 `;
+export const FilterButton = styled.button`
+  margin-left: 10px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 
+  &:hover {
+    background-color: #0056b3;
+  }
+`;
+export const Modal =styled.button`
+  
+`
 export const TableRow = styled(MuiTableRow)`
   height: 70px;
-
+  width: 100%;
+  background-color: white;
   &:nth-of-type(odd) {
-    background-color: #f9f9f9;
+    /* background-color: #adb5bd; */
+    background-color: #2C3E61F2;
+    &>td{
+      color: white !important;
+    }
   }
 `;
 
 export const TableCell = styled(MuiTableCell)`
   padding: 8px;
-  text-align: left;
+  display: flex;
+  flex-wrap: wrap;
+  border: none !important;
+  /* height: 150px; */
 `;
 
 export const BookTable = styled.div`
   max-width: 80% !important;
   overflow-x: auto;
-  border: 1px solid black;
-
   @media (max-width: 545px) {
     max-width: 100% !important;
   }
@@ -68,7 +97,7 @@ export const ExelButton = styled.button`
   border-radius: 4px;
   cursor: pointer;
   font-size: 14px;
-  margin-top: 4px;
+  margin-top: 8px;
   transition: background-color 0.3s ease;
 
   &:hover {
@@ -86,18 +115,26 @@ export { MuiTableBody as TableBody };
 
 export const SerachInput = styled.input`
   padding: 14px;
-  border: 2px solid #ccc;
-  border-radius: 4px;
+  border: none;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
   font-size: 16px;
-  margin-left: 13.6vw;
-  width: 60%;
+  width: 16.5%;
+  height: 40px;
+  margin-left: 65px;
+  /* margin-top: 8px; */
+  background-color:white;
+  color: black;
+  z-index: 999;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: width 0.2s ease-in, border-color 0.2s ease-in, box-shadow 0.2s ease-in;
-
   &:focus {
-    border-color: #007bff;
+    /* border-color: #007bff; */
     outline: none;
     box-shadow: 0 2px 4px rgba(0, 123, 255, 0.2);
+  }
+  &::placeholder{
+    color: black;
   }
 
   @media (max-width: 545px) {
@@ -107,10 +144,14 @@ export const SerachInput = styled.input`
 `;
 
 export const SearchContainer = styled.div`
-  display: inline-block;
-  width: 40%;
-  margin-left: 13.6vw;
-
+  display: flex;
+  width: 100%;
+  height: 60px;
+  justify-content: space-between;
+  background-color: #311E5C;
+  position: sticky;
+  top: 21.5%;
+  /* margin-left: 6.1vw; */
   @media (max-width: 545px) {
     width: 100%;
     margin-left: 0;
@@ -118,26 +159,43 @@ export const SearchContainer = styled.div`
 `;
 
 export const SearchIcon = styled(FaSearch)`
-  margin-left: -7%;
+  /* margin-left: -72.5%; */
+  background-color: white;
+  padding: 5px;
+  height: 40px;
   color: #ccc;
-  margin-bottom: -1%;
-  font-size: 1.5em;
-  @media (max-width: 948px){
+  z-index: 999;
+  border: none;
+  font-size: 2.2em;
+  color: black;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  /* @media (max-width: 948px){
     margin-left: -10%;
   }
-  @media (max-width: 645px){
+  @media (max-width: 1019px){
     display: none;
   }
-
+  @media (max-width: 1300px){
+    margin-left: -67%;
+  } */
 
 `;
-
+export const Searcht = styled.div`
+  width: 90%;  
+  align-items: center;
+  height: 50px;
+  display: flex;
+  
+`
 export const PaginationContainer = styled.div`
   display: flex;
+  width: 20%;
+  float: right;
   justify-content: right;
   margin-top: 20px;
-  margin-right: 20px;
-
+  margin-right: 30px;
+  /* padding: 25px 0; */
   @media (max-width: 545px) {
     justify-content: center;
     margin-right: 0;

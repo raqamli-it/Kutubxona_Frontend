@@ -1,42 +1,44 @@
 import React, { useState, useEffect } from "react";
 import {
   Container,
+  Wrapper,
   Language,
-  CheckboxInput,
   LanguageText,
   MoreButton,
   Letter,
   FilterText,
   Text,
-  Wrapper,
-} from "./Jurnalstyled";
-import useFetch from "../Hooks/useFetchAllData"; // `useFetch` hook'ning to'liq yo'li
+} from "./styled";
+import useFetch from "../Hooks/useFetchAllData"; 
+import Checkbox from "./chekbox/chekbox"; 
 
-function Filter({
+function JurnalFilter({
   selectedLanguages,
   setSelectedLanguages,
   selectedLetters,
   setSelectedLetters,
+  filteredBooksCount
 }) {
   const [allLanguages, setAllLanguages] = useState([]);
   const [allLetters, setAllLetters] = useState([]);
   const [visibleLanguagesCount, setVisibleLanguagesCount] = useState(3);
   const [visibleLettersCount, setVisibleLettersCount] = useState(3);
 
-  const { data: booksData, loading, error } = useFetch("magazines/");
+  const { data: magazinesData, loading, error } = useFetch("magazines/");
 
   useEffect(() => {
-    if (booksData) {
-      // `language_name` va `category_name` bo'yicha unique qiymatlarni ajratamiz
+    if (magazinesData) {
       const languages = [
-        ...new Set(booksData.map((book) => book.language_name)),
+        ...new Set(magazinesData.map((magazine) => magazine.language_name)),
       ];
-      const letters = [...new Set(booksData.map((book) => book.category_name))];
+      const letters = [
+        ...new Set(magazinesData.map((magazine) => magazine.category_name)),
+      ];
 
       setAllLanguages(languages);
       setAllLetters(letters);
     }
-  }, [booksData]);
+  }, [magazinesData]);
 
   const handleLanguageCheckboxChange = (e) => {
     const { value, checked } = e.target;
@@ -76,16 +78,16 @@ function Filter({
           {allLanguages.slice(0, visibleLanguagesCount).map((lang) => (
             <LanguageText key={lang}>
               {lang}
-              <CheckboxInput
-                type="checkbox"
+              <Checkbox
+                id={`checkbox-${lang}`}
                 value={lang}
-                onChange={handleLanguageCheckboxChange}
                 checked={selectedLanguages.includes(lang)}
+                onChange={handleLanguageCheckboxChange}
               />
             </LanguageText>
           ))}
           {visibleLanguagesCount < allLanguages.length && (
-            <MoreButton onClick={handleMoreLanguages}>Boshqa Tillar</MoreButton>
+            <MoreButton onClick={handleMoreLanguages}>More Languages</MoreButton>
           )}
         </Language>
         <Letter>
@@ -93,21 +95,22 @@ function Filter({
           {allLetters.slice(0, visibleLettersCount).map((letter) => (
             <LanguageText key={letter}>
               {letter}
-              <CheckboxInput
-                type="checkbox"
+              <Checkbox
+                id={`checkbox-${letter}`}
                 value={letter}
-                onChange={handleLetterCheckboxChange}
                 checked={selectedLetters.includes(letter)}
+                onChange={handleLetterCheckboxChange}
               />
             </LanguageText>
           ))}
           {visibleLettersCount < allLetters.length && (
-            <MoreButton onClick={handleMoreLetters}>Boshqa Harflar</MoreButton>
+            <MoreButton onClick={handleMoreLetters}>More Categories</MoreButton>
           )}
         </Letter>
+        <Text>Total Books: {filteredBooksCount}</Text>
       </Wrapper>
     </Container>
   );
 }
 
-export default Filter;
+export default JurnalFilter;

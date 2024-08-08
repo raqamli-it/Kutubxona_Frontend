@@ -14,21 +14,36 @@ import {
   SearchIcon,
   PaginationContainer,
   PaginationButton,
+  Wrapper,
+  Searcht
 } from "./index";
 import Filter from "../../Filter/DisertatsiyaFilter";
-import { FaSearch } from "react-icons/fa";
-import useFetch from '../../Hooks/useFetchAllData'
-
+import useFetchAllData from "../../Hooks/useFetchAllData";
 
 const ITEMS_PER_PAGE = 10;
 
 function Dissertation() {
-  const { data: booksData, loading, error } = useFetch("discusses/");
+  const { data: booksData, loading, error } = useFetchAllData("discusses/");
   const [selectedLanguages, setSelectedLanguages] = useState([]);
   const [selectedLetters, setSelectedLetters] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [paginationStart, setPaginationStart] = useState(0);
+
+
+  const uniqueLanguages =
+    booksData && booksData.length > 0
+      ? [
+          ...new Set(
+            booksData
+              .map((book) => book.language_name)
+              .filter((language_name) => language_name !== undefined)
+          ),
+        ]
+      : [];
+  const uniqueLetters = [
+    ...new Set(booksData.map((book) => book.category_name)),
+  ];
 
   const filteredBooks = booksData.filter((book) => {
     const languageMatch =
@@ -36,9 +51,13 @@ function Dissertation() {
         ? selectedLanguages.includes(book.language_name)
         : true;
     const letterMatch =
-      selectedLetters.length > 0 ? selectedLetters.includes(book.category_name) : true;
-    const searchMatch =
-      book.title.toLowerCase().includes(searchTerm.toLowerCase())
+      selectedLetters.length > 0
+        ? selectedLetters.includes(book.category_name)
+        : true;
+    const searchMatch = book.title
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase());
+
     return languageMatch && letterMatch && searchMatch;
   });
 
@@ -50,25 +69,26 @@ function Dissertation() {
   );
 
   const handleExportToExcel = () => {
-    // Export qilish uchun faqat tartib raqam va sarlavhadan iborat ma'lumotlarni tayyorlash
     const exportData = filteredBooks.map((book, index) => ({
-      No: (currentPage - 1) * filteredBooks.length + index + 1, // Tartib raqam
-      title: book.title, // Sarlavha
+      '№': (currentPage - 1) * ITEMS_PER_PAGE + index + 1,
+      'Title': book.title,
     }));
   
-    // Excel uchun yangi varaqlarni yaratish
-    const ws = XLSX.utils.json_to_sheet(exportData, {
-      header: ["No", "title"], // Excel ustunlari
-      skipHeader: false, // Ustun nomlarini qo'shish
+    exportData.push({
+      '№': '',
+      'Title': `Jami kitoblar: ${filteredBooks.length}`
     });
+  
+    const ws = XLSX.utils.json_to_sheet(exportData, {
+      header: ["№", "Title"],
+      skipHeader: false,
+    });
+  
     const wb = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, "Books");
-  
-    // Excel faylini yaratish
-    const fileName = `books_${new Date().toISOString().slice(0, 10)}.xlsx`;
-    XLSX.writeFile(wb, fileName);
+    XLSX.utils.book_append_sheet(wb, ws, "Kitoblar");
+    XLSX.writeFile(wb, "kitoblar.xlsx");
   };
-  
+
   const handleNextPagination = () => {
     setPaginationStart((prev) => Math.min(prev + 3, totalPages - 3));
   };
@@ -77,10 +97,13 @@ function Dissertation() {
     setPaginationStart((prev) => Math.max(0, prev - 3));
   };
 
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error loading data</div>;
+
   return (
     <Container>
-      <BooksText>DISSERTATSIYA</BooksText>
       <SearchContainer>
+        <Searcht>
         <SerachInput
           type="text"
           placeholder="Search books..."
@@ -88,46 +111,70 @@ function Dissertation() {
           onChange={(e) => setSearchTerm(e.target.value)}
         />
         <SearchIcon />
+        </Searcht>
+        <ExelButton onClick={handleExportToExcel}>EXPORT TO EXCEL ></ExelButton>
+        {/* <button onClick={() => setIsFilterModalVisible(true)}>Open Filter</button> */}
       </SearchContainer>
-      <ExelButton onClick={handleExportToExcel}>EXPORT TO EXCEL ></ExelButton>
+      <Wrapper>
       <Filter
+        allLanguages={uniqueLanguages}
+        allLetters={uniqueLetters}
         selectedLanguages={selectedLanguages}
         setSelectedLanguages={setSelectedLanguages}
         selectedLetters={selectedLetters}
         setSelectedLetters={setSelectedLetters}
+        filteredBooksCount={filteredBooks.length}
       />
+      {/* {isFilterModalVisible && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <button onClick={() => setIsFilterModalVisible(false)}>Close</button>
+          </div>
+        </div>
+      )} */}
       <Table>
         <TableHead>
-          <TableRow>
-            <TableCell>#</TableCell>
-            <TableCell>Title</TableCell>
-        
+          <TableRow className="th">
+            <TableCell className="thc">№</TableCell>
+            <TableCell className="thc">Title</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {paginatedBooks.map((book, index) => (
-            <TableRow key={index}>
-              <TableCell>{(currentPage - 1) * ITEMS_PER_PAGE + index + 1}</TableCell>
-              <TableCell>{book.title}</TableCell>
+          {paginatedBooks.length > 0 ? (
+            paginatedBooks.map((book, index) => (
+              <TableRow key={index}>
+              <TableCell>
+                {(currentPage - 1) * ITEMS_PER_PAGE + index + 1}
+              </TableCell>
+              <TableCell className="title">{book.title}</TableCell>
             </TableRow>
-          ))}
+            ))
+          ) : (
+            <TableRow>
+              <TableCell colSpan={5}>Hech narsa topilmadi</TableCell>
+            </TableRow>
+          )}
         </TableBody>
       </Table>
+      </Wrapper>
       <PaginationContainer>
         {paginationStart > 0 && (
           <PaginationButton onClick={handlePrevPagination}>
             &lt;
           </PaginationButton>
         )}
-        {Array.from({ length: Math.min(3, totalPages - paginationStart) }, (_, index) => (
-          <PaginationButton
-            key={paginationStart + index}
-            onClick={() => setCurrentPage(paginationStart + index + 1)}
-            active={paginationStart + index + 1 === currentPage }
-          >
-            {paginationStart + index + 1}
-          </PaginationButton>
-        ))}
+        {Array.from(
+          { length: Math.min(3, totalPages - paginationStart) },
+          (_, index) => (
+            <PaginationButton
+              key={paginationStart + index}
+              onClick={() => setCurrentPage(paginationStart + index + 1)}
+              active={paginationStart + index + 1 === currentPage}
+            >
+              {paginationStart + index + 1}
+            </PaginationButton>
+          )
+        )}
         {paginationStart + 3 < totalPages && (
           <PaginationButton onClick={handleNextPagination}>
             &gt;

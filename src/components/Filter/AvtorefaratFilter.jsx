@@ -12,7 +12,7 @@ import {
 import useFetch from "../Hooks/useFetchAllData"; 
 import Checkbox from "./chekbox/chekbox"; 
 
-function JurnalFilter({
+function AvtoreferatFilter({
   selectedLanguages,
   setSelectedLanguages,
   selectedLetters,
@@ -24,7 +24,7 @@ function JurnalFilter({
   const [visibleLanguagesCount, setVisibleLanguagesCount] = useState(3);
   const [visibleLettersCount, setVisibleLettersCount] = useState(3);
 
-  const { data: magazinesData, loading, error } = useFetch("discusses/");
+  const { data: magazinesData, loading, error } = useFetch("abstracts/");
 
   useEffect(() => {
     if (magazinesData) {
@@ -113,4 +113,4 @@ function JurnalFilter({
   );
 }
 
-export default JurnalFilter;
+export default AvtoreferatFilter;

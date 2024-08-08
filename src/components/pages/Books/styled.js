@@ -28,11 +28,10 @@ export const Wrapper =styled.div`
   display: flex;
   justify-content: start;
   align-items: start;
+  /* border: none; */
 `
 export const Table = styled(MuiTable)`
   width: 80% !important;
-
-
   @media (max-width: 950px) {
     width: 100% !important;
     margin-left: 0;
@@ -62,6 +61,7 @@ export const TableRow = styled(MuiTableRow)`
   height: 70px;
   width: 100%;
   background-color: white;
+  border: none;
   &:nth-of-type(odd) {
     /* background-color: #adb5bd; */
     background-color: #2C3E61F2;
@@ -75,16 +75,11 @@ export const TableCell = styled(MuiTableCell)`
   padding: 8px;
   display: flex;
   flex-wrap: wrap;
+  border: none !important;
   /* height: 150px; */
 `;
 
-export const BookTable = styled.div`
-  max-width: 80% !important;
-  overflow-x: auto;
-  @media (max-width: 545px) {
-    max-width: 100% !important;
-  }
-`;
+
 
 export const ExelButton = styled.button`
   float: right;
@@ -148,6 +143,8 @@ export const SearchContainer = styled.div`
   height: 60px;
   justify-content: space-between;
   background-color: #311E5C;
+  position: sticky;
+  top: 21.5%;
   /* margin-left: 6.1vw; */
   @media (max-width: 545px) {
     width: 100%;

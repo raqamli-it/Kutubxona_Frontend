@@ -29,7 +29,7 @@ export const Container = styled.div`
 export const Wrapper =styled.div`
   /* margin-top: 85%; */
   position: sticky;
-  top: 2%;
+  top: 28%;
   /* @media (max-width: 1800px) {
     margin-top: 95%;
   }
