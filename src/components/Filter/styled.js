@@ -28,8 +28,13 @@ export const Container = styled.div`
 `;
 export const Wrapper =styled.div`
   /* margin-top: 85%; */
-  position: sticky;
-  top: 28%;
+  position: fixed;
+  width: 18%;
+  top: 30%;
+  @media (max-width: 1500px) {
+      position: fixed;
+      top: 32%;
+  }
   /* @media (max-width: 1800px) {
     margin-top: 95%;
   }

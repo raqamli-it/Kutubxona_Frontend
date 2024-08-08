@@ -145,6 +145,9 @@ export const SearchContainer = styled.div`
   background-color: #311E5C;
   position: sticky;
   top: 21.5%;
+  @media (max-width: 1500px) {
+    top: 24%;
+  }
   /* margin-left: 6.1vw; */
   @media (max-width: 545px) {
     width: 100%;
