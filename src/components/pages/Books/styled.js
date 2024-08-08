@@ -25,7 +25,7 @@ export const Book = styled.h1`
 export const Wrapper =styled.div`
   width: 100%;
   height: auto;
-  display: inline-flex;
+  display: flex;
   justify-content: start;
   align-items: start;
 `
@@ -187,6 +187,8 @@ export const Searcht = styled.div`
 `
 export const PaginationContainer = styled.div`
   display: flex;
+  width: 20%;
+  float: right;
   justify-content: right;
   margin-top: 20px;
   margin-right: 30px;

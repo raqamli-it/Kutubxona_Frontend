@@ -70,7 +70,7 @@ function Books() {
 
   const handleExportToExcel = () => {
     const exportData = filteredBooks.map((book, index) => ({
-      No: (currentPage - 1) * ITEMS_PER_PAGE + index + 1,
+      '№': (currentPage - 1) * ITEMS_PER_PAGE + index + 1,
       title: book.title,
       Til: book.language_name,
       Qator: book.category_name,
@@ -78,7 +78,7 @@ function Books() {
     }));
     
     exportData.push({
-      No: '',
+      '№': '',
       title: 'Total Books',
       Til: '',
       Qator: '',
@@ -86,7 +86,7 @@ function Books() {
     });
   
     const ws = XLSX.utils.json_to_sheet(exportData, {
-      header: ["No", "title", "Nusxalangan", "Til", "Qator"],
+      header: ["№", "title", "Nusxalangan", "Til", "Qator"],
       skipHeader: false,
     });
   
@@ -141,7 +141,7 @@ function Books() {
       <Table>
         <TableHead>
           <TableRow className="th">
-            <TableCell className="thc">#</TableCell>
+            <TableCell className="thc">№</TableCell>
             <TableCell className="thc">Title</TableCell>
             <TableCell className="thc">Nusxalangan</TableCell>
             <TableCell className="thc">Til</TableCell>

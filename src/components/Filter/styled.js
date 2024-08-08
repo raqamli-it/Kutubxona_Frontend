@@ -5,9 +5,9 @@ export const Container = styled.div`
   background-color: #311E5C;
   color: white;
   width: 20%;
-  /* min-height: 100vh; */
+  min-height: 80vh;
   /* margin: 0 auto; */
-  position: sticky; 
+  /* position: sticky;  */
   /* display: flex; */
   /* top: -5%; */
   /* top: 10%; */
