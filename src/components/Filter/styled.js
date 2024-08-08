@@ -121,6 +121,7 @@ export const MoreButton = styled.button`
   background-color: #007bff;
   color: #fff;
   border: none;
+  margin-bottom: 25px;
   padding: 8px 16px;
   border-radius: 4px;
   margin-left: 50px;
