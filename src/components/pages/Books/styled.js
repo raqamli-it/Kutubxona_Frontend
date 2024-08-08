@@ -24,8 +24,10 @@ export const Book = styled.h1`
 `;
 export const Wrapper =styled.div`
   width: 100%;
-  /* height: 100vh; */
-  display: flex;
+  height: auto;
+  display: inline-flex;
+  justify-content: start;
+  align-items: start;
 `
 export const Table = styled(MuiTable)`
   width: 80% !important;
@@ -73,6 +75,7 @@ export const TableCell = styled(MuiTableCell)`
   padding: 8px;
   display: flex;
   flex-wrap: wrap;
+  /* height: 150px; */
 `;
 
 export const BookTable = styled.div`
@@ -111,13 +114,14 @@ export { MuiTableBody as TableBody };
 
 export const SerachInput = styled.input`
   padding: 14px;
-  border: 2px solid #ccc;
-  border-radius: 4px;
+  border: none;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
   font-size: 16px;
   width: 16.5%;
-  height: 50px;
+  height: 40px;
   margin-left: 65px;
-  margin-top: 8px;
+  /* margin-top: 8px; */
   background-color:white;
   color: black;
   z-index: 999;
@@ -152,12 +156,18 @@ export const SearchContainer = styled.div`
 `;
 
 export const SearchIcon = styled(FaSearch)`
-  margin-left: -72.5%;
+  /* margin-left: -72.5%; */
+  background-color: white;
+  padding: 5px;
+  height: 40px;
   color: #ccc;
-  margin-top: 1%;
   z-index: 999;
-  font-size: 1.5em;
-  @media (max-width: 948px){
+  border: none;
+  font-size: 2.2em;
+  color: black;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  /* @media (max-width: 948px){
     margin-left: -10%;
   }
   @media (max-width: 1019px){
@@ -165,16 +175,22 @@ export const SearchIcon = styled(FaSearch)`
   }
   @media (max-width: 1300px){
     margin-left: -67%;
-  }
+  } */
 
 `;
-
+export const Searcht = styled.div`
+  width: 90%;  
+  align-items: center;
+  height: 50px;
+  display: flex;
+  
+`
 export const PaginationContainer = styled.div`
   display: flex;
   justify-content: right;
   margin-top: 20px;
-  margin-right: 20px;
-
+  margin-right: 30px;
+  /* padding: 25px 0; */
   @media (max-width: 545px) {
     justify-content: center;
     margin-right: 0;

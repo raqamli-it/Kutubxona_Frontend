@@ -14,7 +14,8 @@ import {
   SearchIcon,
   PaginationContainer,
   PaginationButton,
-  Wrapper
+  Wrapper,
+  Searcht
 } from "./styled";
 import Filter from "../../Filter/BooksFilter";
 import useFetchAllData from "../../Hooks/useFetchAllData";
@@ -108,6 +109,7 @@ function Books() {
   return (
     <Container>
       <SearchContainer>
+        <Searcht>
         <SerachInput
           type="text"
           placeholder="Search books..."
@@ -115,6 +117,7 @@ function Books() {
           onChange={(e) => setSearchTerm(e.target.value)}
         />
         <SearchIcon />
+        </Searcht>
         <ExelButton onClick={handleExportToExcel}>EXPORT TO EXCEL ></ExelButton>
         {/* <button onClick={() => setIsFilterModalVisible(true)}>Open Filter</button> */}
       </SearchContainer>
