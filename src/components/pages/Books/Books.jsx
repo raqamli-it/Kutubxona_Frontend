@@ -19,7 +19,7 @@ import {
 import Filter from "../../Filter/BooksFilter";
 import useFetchAllData from "../../Hooks/useFetchAllData";
 
-const ITEMS_PER_PAGE = 20;
+const ITEMS_PER_PAGE = 10;
 
 function Books() {
   const { data: booksData, loading, error } = useFetchAllData("books/");
