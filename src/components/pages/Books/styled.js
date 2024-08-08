@@ -11,6 +11,8 @@ import {
 export const Container = styled.div`
   width: 100%;
   height: auto;
+  position: relative;
+  background-color: #311E5C;
 `;
 
 export const BooksText = styled.h1`
@@ -20,10 +22,14 @@ export const BooksText = styled.h1`
 export const Book = styled.h1`
   margin-left: 20%;
 `;
-
+export const Wrapper =styled.div`
+  width: 100%;
+  /* height: 100vh; */
+  display: flex;
+`
 export const Table = styled(MuiTable)`
   width: 80% !important;
-  margin-left: 20%;
+
 
   @media (max-width: 950px) {
     width: 100% !important;

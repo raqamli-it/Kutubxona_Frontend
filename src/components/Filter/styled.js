@@ -5,11 +5,12 @@ export const Container = styled.div`
   background-color: #311E5C;
   color: white;
   width: 20%;
-  min-height: 150vh;
-  margin: 0 auto;
-  position: fixed; 
-  display: flex;
-  top: -5%;
+  min-height: 100vh;
+  /* margin: 0 auto; */
+  position: sticky; 
+  /* display: flex; */
+  /* top: -5%; */
+  /* top: 10%; */
   flex-direction: column;
   justify-content: space-between;
   @media screen and (max-width: 545px) {
@@ -26,8 +27,10 @@ export const Container = styled.div`
   }
 `;
 export const Wrapper =styled.div`
-  margin-top: 85%;
-  @media (max-width: 1800px) {
+  /* margin-top: 85%; */
+  position: sticky;
+  top: 2%;
+  /* @media (max-width: 1800px) {
     margin-top: 95%;
   }
   @media (max-width: 1700px) {
@@ -53,7 +56,7 @@ export const Wrapper =styled.div`
   }
   @media (max-width: 1000px) {
     margin-top: 180%;
-  }
+  } */
 `
 export const Language = styled.div`
   width: 100%;

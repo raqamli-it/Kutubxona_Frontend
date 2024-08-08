@@ -14,11 +14,12 @@ import {
   SearchIcon,
   PaginationContainer,
   PaginationButton,
+  Wrapper
 } from "./styled";
 import Filter from "../../Filter/BooksFilter";
 import useFetchAllData from "../../Hooks/useFetchAllData";
 
-const ITEMS_PER_PAGE = 10;
+const ITEMS_PER_PAGE = 20;
 
 function Books() {
   const { data: booksData, loading, error } = useFetchAllData("books/");
@@ -27,6 +28,8 @@ function Books() {
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [paginationStart, setPaginationStart] = useState(0);
+
+
   const uniqueLanguages =
     booksData && booksData.length > 0
       ? [
@@ -115,6 +118,7 @@ function Books() {
         <ExelButton onClick={handleExportToExcel}>EXPORT TO EXCEL ></ExelButton>
         {/* <button onClick={() => setIsFilterModalVisible(true)}>Open Filter</button> */}
       </SearchContainer>
+      <Wrapper>
       <Filter
         allLanguages={uniqueLanguages}
         allLetters={uniqueLetters}
@@ -163,6 +167,7 @@ function Books() {
           )}
         </TableBody>
       </Table>
+      </Wrapper>
       <PaginationContainer>
         {paginationStart > 0 && (
           <PaginationButton onClick={handlePrevPagination}>
