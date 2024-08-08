@@ -41,7 +41,7 @@ function Home() {
           top: "25%",
           left: "50%",
           transform: "translateX(-50%)",
-          fontSize: "85px",
+          fontSize: "70px",
           zIndex: 999,
           textAlign: "center",
         }}

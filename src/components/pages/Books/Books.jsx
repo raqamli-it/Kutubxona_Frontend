@@ -27,8 +27,6 @@ function Books() {
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [paginationStart, setPaginationStart] = useState(0);
-  const [isFilterModalVisible, setIsFilterModalVisible] = useState(false);
-
   const uniqueLanguages =
     booksData && booksData.length > 0
       ? [
