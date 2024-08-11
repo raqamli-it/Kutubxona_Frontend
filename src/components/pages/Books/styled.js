@@ -83,6 +83,7 @@ export const TableCell = styled(MuiTableCell)`
 
 export const ExelButton = styled.button`
   float: right;
+  width: 10%;
   margin-right: 1%;
   background-color: #007bff;
   color: #fff;
@@ -91,17 +92,19 @@ export const ExelButton = styled.button`
   border-radius: 4px;
   cursor: pointer;
   font-size: 14px;
-  margin-top: 8px;
   transition: background-color 0.3s ease;
 
   &:hover {
     background-color: #0056b3;
   }
 
-  @media (max-width: 545px) {
-    float: none;
-    display: block;
-    margin: 10px auto;
+  @media (max-width: 950px) {
+      width: 15%;
+      padding: 5px;
+      margin-right: .5%;
+  }
+  @media (max-width:1097px) {
+    font-size: 10px;
   }
 `;
 
@@ -131,8 +134,8 @@ export const SerachInput = styled.input`
     color: black;
   }
 
-  @media (max-width: 545px) {
-    width: 100%;
+  @media (max-width: 950px) {
+    width: 90%;
     margin-left: 0;
   }
 `;
@@ -144,7 +147,10 @@ export const SearchContainer = styled.div`
   justify-content: space-between;
   background-color: #311E5C;
   position: sticky;
-  top: 21.5%;
+  top: 22%;
+  @media (max-width: 1880px) {
+    top: 24.3%;
+  }
   @media (max-width: 1500px) {
     top: 24%;
   }

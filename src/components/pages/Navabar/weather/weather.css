@@ -10,7 +10,12 @@
   .weater-wrap img {
     padding: 5px;
   }
-  
+
+  @media screen and (max-width: 520px) {
+    .weather__row{
+      display: none;
+    }
+  }
   .weater-wrap p {
     display: flex;
     align-items: center;

@@ -38,15 +38,13 @@ export const Container = styled.div`
   padding: 0 50px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   flex-wrap: wrap;
-  @media screen and (max-width: 910px) {
-    height: 130px;
+  @media screen and (max-width: 950px) {
+    height: 250px;
   }
-  @media screen and (max-width: 605px) {
-    height: auto;
-  }
-  @media screen and (max-width: 390px) {
-    padding: 0 0;
-  }
+  /* @media screen and (max-width: 605px) {
+    /* padding: 0 0; */
+  } */
+
 `;
 
 export const UILink = styled(Link)`
