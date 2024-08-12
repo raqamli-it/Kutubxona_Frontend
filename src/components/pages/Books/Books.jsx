@@ -79,7 +79,7 @@ function Books() {
     
     exportData.push({
       '№': '',
-      title: 'Total Books',
+      title: 'Jami Kitoblar soni',
       Til: '',
       Qator: '',
       Nusxalangan: filteredBooks.length
@@ -112,13 +112,13 @@ function Books() {
         <Searcht>
         <SerachInput
           type="text"
-          placeholder="Search books..."
+          placeholder="Qidiruv..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
         <SearchIcon />
         </Searcht>
-        <ExelButton onClick={handleExportToExcel}>EXPORT TO EXCEL ></ExelButton>
+        <ExelButton onClick={handleExportToExcel}>Yuklab Olish</ExelButton>
         {/* <button onClick={() => setIsFilterModalVisible(true)}>Open Filter</button> */}
       </SearchContainer>
       <Wrapper>
@@ -142,7 +142,7 @@ function Books() {
         <TableHead>
           <TableRow className="th">
             <TableCell className="thc">№</TableCell>
-            <TableCell className="thc">Title</TableCell>
+            <TableCell className="thc">Kitobning Nomi</TableCell>
             <TableCell className="thc">Nusxalangan</TableCell>
             <TableCell className="thc">Til</TableCell>
             <TableCell className="thc">Qator</TableCell>

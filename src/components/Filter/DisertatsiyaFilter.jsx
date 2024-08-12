@@ -72,9 +72,9 @@ function JurnalFilter({
   return (
     <Container>
       <Wrapper>
-        <FilterText>FILTER</FilterText>
+        <FilterText>SARALASH</FilterText>
         <Language>
-          <Text>Language</Text>
+          <Text>TIllar</Text>
           {allLanguages.slice(0, visibleLanguagesCount).map((lang) => (
             <LanguageText key={lang}>
               {lang}
@@ -87,11 +87,11 @@ function JurnalFilter({
             </LanguageText>
           ))}
           {visibleLanguagesCount < allLanguages.length && (
-            <MoreButton onClick={handleMoreLanguages}>More Languages</MoreButton>
+            <MoreButton onClick={handleMoreLanguages}>Boshqa Qatorlar</MoreButton>
           )}
         </Language>
         <Letter>
-          <Text>Category</Text>
+          <Text>Qatorlar</Text>
           {allLetters.slice(0, visibleLettersCount).map((letter) => (
             <LanguageText key={letter}>
               {letter}
@@ -104,10 +104,10 @@ function JurnalFilter({
             </LanguageText>
           ))}
           {visibleLettersCount < allLetters.length && (
-            <MoreButton onClick={handleMoreLetters}>More Categories</MoreButton>
+            <MoreButton onClick={handleMoreLetters}>Boshqa Qatorlar</MoreButton>
           )}
         </Letter>
-        <Text>Total Books: {filteredBooksCount}</Text>
+        <Text>Umumiy Kitoblar Soni: {filteredBooksCount}</Text>
       </Wrapper>
     </Container>
   );

@@ -106,13 +106,13 @@ function Jurnal() {
         <Searcht>
         <SerachInput
           type="text"
-          placeholder="Search books..."
+          placeholder="Qidiruv..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
         <SearchIcon />
         </Searcht>
-        <ExelButton onClick={handleExportToExcel}>EXPORT TO EXCEL ></ExelButton>
+        <ExelButton onClick={handleExportToExcel}>Yuklab Olish</ExelButton>
         {/* <button onClick={() => setIsFilterModalVisible(true)}>Open Filter</button> */}
       </SearchContainer>
       <Wrapper>
@@ -136,7 +136,7 @@ function Jurnal() {
         <TableHead>
           <TableRow className="th">
             <TableCell className="thc">№</TableCell>
-            <TableCell className="thc">Title</TableCell>
+            <TableCell className="thc">Kitobning Nomi</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
