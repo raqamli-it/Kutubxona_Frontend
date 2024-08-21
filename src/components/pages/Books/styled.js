@@ -12,7 +12,7 @@ export const Container = styled.div`
   width: 100%;
   height: auto;
   position: relative;
-  background-color: #311E5C;
+  background-color: #311e5c;
 `;
 
 export const BooksText = styled.h1`
@@ -22,19 +22,26 @@ export const BooksText = styled.h1`
 export const Book = styled.h1`
   margin-left: 20%;
 `;
-export const Wrapper =styled.div`
+export const Wrapper = styled.div`
   width: 100%;
   height: auto;
   display: flex;
   justify-content: start;
   align-items: start;
   /* border: none; */
-`
+`;
 export const Table = styled(MuiTable)`
   width: 80% !important;
+  margin-top: 60px;
+  @media (max-width: 1880px) {
+    margin-top: 60px;
+  }
   @media (max-width: 950px) {
     width: 100% !important;
     margin-left: 0;
+  }
+  @media (min-width: 2000px) {
+    margin-top: 60px;
   }
 `;
 
@@ -54,9 +61,7 @@ export const FilterButton = styled.button`
     background-color: #0056b3;
   }
 `;
-export const Modal =styled.button`
-  
-`
+export const Modal = styled.button``;
 export const TableRow = styled(MuiTableRow)`
   height: 70px;
   width: 100%;
@@ -64,8 +69,8 @@ export const TableRow = styled(MuiTableRow)`
   border: none;
   &:nth-of-type(even) {
     /* background-color: #adb5bd; */
-    background-color: #2C3E61F2;
-    &>td{
+    background-color: #2c3e61f2;
+    & > td {
       color: white !important;
     }
   }
@@ -78,8 +83,6 @@ export const TableCell = styled(MuiTableCell)`
   border: none !important;
   /* height: 150px; */
 `;
-
-
 
 export const ExelButton = styled.button`
   float: right;
@@ -99,11 +102,11 @@ export const ExelButton = styled.button`
   }
 
   @media (max-width: 950px) {
-      width: 15%;
-      padding: 5px;
-      margin-right: .5%;
+    width: 15%;
+    padding: 5px;
+    margin-right: 0.5%;
   }
-  @media (max-width:1097px) {
+  @media (max-width: 1097px) {
     font-size: 10px;
   }
 `;
@@ -120,17 +123,18 @@ export const SerachInput = styled.input`
   height: 40px;
   margin-left: 65px;
   /* margin-top: 8px; */
-  background-color:white;
+  background-color: white;
   color: black;
   z-index: 999;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: width 0.2s ease-in, border-color 0.2s ease-in, box-shadow 0.2s ease-in;
+  transition: width 0.2s ease-in, border-color 0.2s ease-in,
+    box-shadow 0.2s ease-in;
   &:focus {
     /* border-color: #007bff; */
     outline: none;
     box-shadow: 0 2px 4px rgba(0, 123, 255, 0.2);
   }
-  &::placeholder{
+  &::placeholder {
     color: black;
   }
 
@@ -145,20 +149,40 @@ export const SearchContainer = styled.div`
   width: 100%;
   height: 60px;
   justify-content: space-between;
-  background-color: #311E5C;
-  position: sticky;
+  background-color: #311e5c;
+  position: fixed;
   top: 22%;
-  @media (max-width: 1880px) {
-    top: 24.3%;
+
+  @media (min-width: 2000px) {
+    top: 22.75%;
   }
+
+  @media (min-width: 2500px) {
+    top: 18%;
+  }
+
+  @media (max-width: 1880px) {
+    top: 24%;
+  }
+
   @media (max-width: 1500px) {
     top: 24%;
   }
-  /* margin-left: 6.1vw; */
+
   @media (max-width: 545px) {
     width: 100%;
     margin-left: 0;
   }
+  @media (max-height: 730px) {
+    top: 28%;
+  }
+  @media (max-height:680px) {
+    top: 30%;
+  }
+  /* @media (max-height:850px) {
+    top: 26%;
+  } */
+ 
 `;
 
 export const SearchIcon = styled(FaSearch)`
@@ -182,15 +206,13 @@ export const SearchIcon = styled(FaSearch)`
   @media (max-width: 1300px){
     margin-left: -67%;
   } */
-
 `;
 export const Searcht = styled.div`
-  width: 90%;  
+  width: 90%;
   align-items: center;
   height: 50px;
   display: flex;
-  
-`
+`;
 export const PaginationContainer = styled.div`
   display: flex;
   width: 20%;

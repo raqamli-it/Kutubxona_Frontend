@@ -14,7 +14,7 @@ export const navbar = [
   },
   {
     id: 2,
-    title: 'Adabiyot',
+    title: 'Adabiyotlar',
     path: '/adabiyot',
     component: <Books/>,
     hidden: false 

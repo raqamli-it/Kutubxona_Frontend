@@ -28,6 +28,7 @@ export const Wrapper =styled.div`
   display: flex;
   justify-content: start;
   align-items: start;
+
 `
 export const Table = styled(MuiTable)`
   width: 80% !important;
@@ -37,6 +38,7 @@ export const Table = styled(MuiTable)`
     width: 100% !important;
     margin-left: 0;
   }
+
 `;
 
 export const TableHead = styled(MuiTableHead)`
@@ -155,6 +157,12 @@ export const SearchContainer = styled.div`
   @media (max-width: 545px) {
     width: 100%;
     margin-left: 0;
+  }
+  @media (max-height: 730px) {
+    top: 28%;
+  }
+  @media (max-height:680px) {
+    top: 30%;
   }
 `;
 

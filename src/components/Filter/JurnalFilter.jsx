@@ -11,6 +11,7 @@ import {
 } from "./styled";
 import useFetch from "../Hooks/useFetchAllData"; 
 import Checkbox from "./chekbox/chekbox"; 
+import { useNavigate } from "react-router-dom";
 
 function JurnalFilter({
   selectedLanguages,
@@ -66,9 +67,12 @@ function JurnalFilter({
     setVisibleLettersCount((prev) => prev + 3);
   };
 
+  const navigate = useNavigate()
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error fetching data</p>;
-
+  const handleLogout = () => {
+    navigate('/login'); 
+  };
   return (
     <Container>
       <Wrapper>
@@ -107,7 +111,8 @@ function JurnalFilter({
             <MoreButton onClick={handleMoreLetters}>Boshqa Qatorlar</MoreButton>
           )}
         </Letter>
-        <Text>Umumiy Kitoblar Soni:  {filteredBooksCount}</Text>
+        <Text>Umumiy Kitoblar soni:{filteredBooksCount}</Text>
+        <MoreButton onClick={handleLogout}>Chiqish</MoreButton>
       </Wrapper>
     </Container>
   );

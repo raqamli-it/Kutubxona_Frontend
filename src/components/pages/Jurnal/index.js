@@ -149,12 +149,34 @@ export const SearchContainer = styled.div`
   height: 60px;
   justify-content: space-between;
   background-color: #311E5C;
-  position: sticky;
-  top: 21.5%;
+  position: fixed;
+  top: 22%;
   /* margin-left: 6.1vw; */
   @media (max-width: 545px) {
     width: 100%;
     margin-left: 0;
+  }
+  @media (min-width: 2000px) {
+    top: 22.75%;
+  }
+
+  @media (min-width: 2500px) {
+    top: 18%;
+  }
+
+  @media (max-width: 1880px) {
+    top: 24%;
+  }
+
+  @media (max-width: 1500px) {
+    top: 24%;
+  }
+
+  @media (max-height: 730px) {
+    top: 28%;
+  }
+  @media (max-height:680px) {
+    top: 30%;
   }
 `;
 

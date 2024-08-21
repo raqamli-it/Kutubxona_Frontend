@@ -9,15 +9,16 @@ import {
   FilterText,
   Text,
 } from "./styled";
-import useFetch from "../Hooks/useFetchAllData"; 
-import Checkbox from "./chekbox/chekbox"; 
+import useFetch from "../Hooks/useFetchAllData";
+import Checkbox from "./chekbox/chekbox";
+import { useNavigate } from "react-router-dom";
 
 function JurnalFilter({
   selectedLanguages,
   setSelectedLanguages,
   selectedLetters,
   setSelectedLetters,
-  filteredBooksCount
+  filteredBooksCount,
 }) {
   const [allLanguages, setAllLanguages] = useState([]);
   const [allLetters, setAllLetters] = useState([]);
@@ -65,7 +66,10 @@ function JurnalFilter({
   const handleMoreLetters = () => {
     setVisibleLettersCount((prev) => prev + 3);
   };
-
+  const navigate =useNavigate()
+  const handleLogout = () => {
+    navigate('/login'); 
+  };
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error fetching data</p>;
 
@@ -74,7 +78,7 @@ function JurnalFilter({
       <Wrapper>
         <FilterText>SARALASH</FilterText>
         <Language>
-          <Text>TIllar</Text>
+          <Text>Tillar</Text>
           {allLanguages.slice(0, visibleLanguagesCount).map((lang) => (
             <LanguageText key={lang}>
               {lang}
@@ -87,7 +91,7 @@ function JurnalFilter({
             </LanguageText>
           ))}
           {visibleLanguagesCount < allLanguages.length && (
-            <MoreButton onClick={handleMoreLanguages}>Boshqa Qatorlar</MoreButton>
+            <MoreButton onClick={handleMoreLanguages}>Boshqa Tillar</MoreButton>
           )}
         </Language>
         <Letter>
@@ -107,7 +111,8 @@ function JurnalFilter({
             <MoreButton onClick={handleMoreLetters}>Boshqa Qatorlar</MoreButton>
           )}
         </Letter>
-        <Text>Umumiy Kitoblar Soni: {filteredBooksCount}</Text>
+        <Text>Umumiy Kitoblar soni: {filteredBooksCount}</Text>
+        <MoreButton onClick={handleLogout}>Chiqish</MoreButton>
       </Wrapper>
     </Container>
   );

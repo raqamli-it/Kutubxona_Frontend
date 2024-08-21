@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   padding: 16px;
-  background-color: #311E5C;
+  background-color: #311e5c;
   color: white;
   width: 20%;
   min-height: 80vh;
@@ -18,23 +18,37 @@ export const Container = styled.div`
     position: relative;
     width: 100%;
   }
+
   @media (max-width: 950px) {
     display: none;
     position: absolute;
-    & .show{
+    & .show {
       display: block;
     }
   }
 `;
-export const Wrapper =styled.div`
+export const Wrapper = styled.div`
   /* margin-top: 85%; */
   position: fixed;
   width: 18%;
   top: 30%;
-  @media (max-width: 1500px) {
-      position: fixed;
-      top: 32%;
+
+  @media (max-width: 1900px) {
+    position: fixed;
+    top: 34%;
   }
+
+  @media (max-width: 1500px) {
+    position: fixed;
+    top: 34%;
+  }
+  @media (max-height: 850px) {
+    top: 34%;
+  }
+  @media (max-height: 680px) {
+    top: 39%;
+  }
+
   /* @media (max-width: 1800px) {
     margin-top: 95%;
   }
@@ -62,26 +76,63 @@ export const Wrapper =styled.div`
   @media (max-width: 1000px) {
     margin-top: 180%;
   } */
-`
+`;
 export const Language = styled.div`
   width: 100%;
-
+  @media (max-height: 680px) {
+    max-height: 170px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    ::-webkit-scrollbar {
+    width: 0;  /* Chrome, Safari va Opera uchun */
+    background: transparent;
+  }
+  -ms-overflow-style: none;  /* IE va Edge uchun */
+  scrollbar-width: none;  /* Firefox uchun */
+  }
 `;
 export const FilterText = styled.p`
-    font-weight: 800;
-    text-align: center;
-    font-size: 20px;
-`
+  font-weight: 800;
+  text-align: center;
+  font-size: 20px;
+  @media (max-height: 650px) {
+    font-size: 15px;
+  }
+`;
 export const Letter = styled.div`
   margin-bottom: 16px;
+  @media (max-height: 680px) {
+    max-height:170px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin-bottom: 8px;
+    ::-webkit-scrollbar {
+    width: 0;  /* Chrome, Safari va Opera uchun */
+    background: transparent;
+  }
+  -ms-overflow-style: none;  /* IE va Edge uchun */
+  scrollbar-width: none;  /* Firefox uchun */
+  }
 `;
-export const Text =styled.p`
+export const Text = styled.p`
   font-size: 19px;
   font-weight: 600;
   margin-left: 50px;
-  
+
   margin-bottom: 10px;
-`
+  @media (max-height: 730px) {
+    font-size: 15px;
+    margin-bottom: 1px;
+  }
+  @media (max-height: 680px) {
+    font-size: 13px;
+    
+  }
+  /* @media (max-height: 850px) {
+    font-size: 16px;
+  } */
+
+`;
 export const LanguageText = styled.label`
   display: flex;
   align-items: center;
@@ -90,6 +141,10 @@ export const LanguageText = styled.label`
   font-size: 16px;
   color: white;
   margin-left: 50px;
+  @media (max-height: 650px) {
+    font-size: 12px;
+    width: 75%;
+  }
 `;
 
 export const CheckboxInput = styled.input`
@@ -137,4 +192,14 @@ export const MoreButton = styled.button`
   &:hover {
     background-color: #0056b3;
   }
+  @media (max-height: 730px) {
+    margin-bottom: 14px;
+  }
+  @media (max-height: 680px) {
+    margin-bottom: 5px;
+    padding: 3px 10px;
+  }
+  /* @media (max-height: 850px) {
+    margin-bottom: 5px;
+  } */
 `;

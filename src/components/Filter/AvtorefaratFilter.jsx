@@ -11,7 +11,7 @@ import {
 } from "./styled";
 import useFetch from "../Hooks/useFetchAllData"; 
 import Checkbox from "./chekbox/chekbox"; 
-
+import { useNavigate } from "react-router-dom";
 function AvtoreferatFilter({
   selectedLanguages,
   setSelectedLanguages,
@@ -23,6 +23,7 @@ function AvtoreferatFilter({
   const [allLetters, setAllLetters] = useState([]);
   const [visibleLanguagesCount, setVisibleLanguagesCount] = useState(3);
   const [visibleLettersCount, setVisibleLettersCount] = useState(3);
+  const navigate =useNavigate()
 
   const { data: magazinesData, loading, error } = useFetch("abstracts/");
 
@@ -65,7 +66,9 @@ function AvtoreferatFilter({
   const handleMoreLetters = () => {
     setVisibleLettersCount((prev) => prev + 3);
   };
-
+ const handleLogout = () => {
+    navigate('/login'); 
+  };
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error fetching data</p>;
 
@@ -107,10 +110,10 @@ function AvtoreferatFilter({
             <MoreButton onClick={handleMoreLetters}>Boshqa Qatorlar</MoreButton>
           )}
         </Letter>
-        <Text>Umumiy Kitoblar Soni:  {filteredBooksCount}</Text>
+        <Text>Umumiy Kitoblar soni: {filteredBooksCount}</Text>
+        <MoreButton onClick={handleLogout}>Chiqish</MoreButton>
       </Wrapper>
     </Container>
   );
 }
-
 export default AvtoreferatFilter;

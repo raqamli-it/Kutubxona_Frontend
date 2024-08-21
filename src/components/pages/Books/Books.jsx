@@ -71,7 +71,7 @@ function Books() {
   const handleExportToExcel = () => {
     const exportData = filteredBooks.map((book, index) => ({
       '№': (currentPage - 1) * ITEMS_PER_PAGE + index + 1,
-      title: book.title,
+      'Kitoblar nomi': book.title,
       Til: book.language_name,
       Qator: book.category_name,
       Nusxalangan: book.scan ? "Skaner qilingan ✅" : "Skaner qilinmagan ❎",
@@ -79,14 +79,14 @@ function Books() {
     
     exportData.push({
       '№': '',
-      title: 'Jami Kitoblar soni',
+      'Kitoblar nomi': 'Jami Kitoblar soni:',
       Til: '',
       Qator: '',
       Nusxalangan: filteredBooks.length
     });
   
     const ws = XLSX.utils.json_to_sheet(exportData, {
-      header: ["№", "title", "Nusxalangan", "Til", "Qator"],
+      header: ["№", "Kitoblar nomi", "Nusxalangan", "Til", "Qator"],
       skipHeader: false,
     });
   
@@ -112,7 +112,7 @@ function Books() {
         <Searcht>
         <SerachInput
           type="text"
-          placeholder="Qidiruv..."
+          placeholder="Qidiruv ..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
@@ -142,7 +142,7 @@ function Books() {
         <TableHead>
           <TableRow className="th">
             <TableCell className="thc">№</TableCell>
-            <TableCell className="thc">Kitobning Nomi</TableCell>
+            <TableCell className="thc">Kitoblar nomi</TableCell>
             <TableCell className="thc">Nusxalangan</TableCell>
             <TableCell className="thc">Til</TableCell>
             <TableCell className="thc">Qator</TableCell>

@@ -156,6 +156,12 @@ export const SearchContainer = styled.div`
     width: 100%;
     margin-left: 0;
   }
+  @media (max-height: 730px) {
+    top: 28%;
+  }
+  @media (max-height:680px) {
+    top: 30%;
+  }
 `;
 
 export const SearchIcon = styled(FaSearch)`

@@ -32,8 +32,19 @@
     height: 24px;
     top: calc(100px - 12px);
     left: calc(100px - 12px);
+    
   }
   
+  @media (max-height:650px) {
+    .checkbox-wrapper-12 .cbx {
+        width: 10px;
+        height: 11px;
+    }
+    .checkbox-wrapper-12 .cbx input{
+      width: 18px;
+      height: 18px;
+    }
+  }
   .checkbox-wrapper-12 .cbx input {
     position: absolute;
     top: 0;

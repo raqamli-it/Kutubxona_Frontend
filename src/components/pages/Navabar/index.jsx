@@ -5,16 +5,20 @@ import 'moment/locale/uz';
 import { useNavigate, useLocation, Outlet } from 'react-router-dom';
 import { Container, Logos, LogoContainer, Title, NavLinks, UILink, TimeDisplay, BurgerLinks, CalendarWrapper } from './styled';
 import Logo from '../../../assets/img/logo (1).png';
-import WeatherSide from './weather/Weather';
 import Calendar from 'react-calendar';
 import { navbar } from '../../utils';
 import 'react-calendar/dist/Calendar.css';
 
 function Navbar() {
+  const getFormattedDate = (date) => {
+    // Replace this with your Cyrillic formatted date
+    return date.toLocaleDateString('ru-RU', { year: 'numeric', month: 'long', day: 'numeric' });
+  };
+
   const [time, setTime] = useState(new Date().toLocaleTimeString());
   const [isNavLinksVisible, setIsNavLinksVisible] = useState(false);
-  const [gregorianDate, setGregorianDate] = useState(moment().format('YYYY-yil DD-MMM'));
-  const [hijriDate, setHijriDate] = useState(moment().format('iYYYY-yil iD-iMMMM'));
+  const [gregorianDate, setGregorianDate] = useState(getFormattedDate(new Date()));
+  const [hijriDate, setHijriDate] = useState(moment().format('iYYYY-yyyy iD iMMMM'));
   const [date, setDate] = useState(new Date());
   const [calendarOpen, setCalendarOpen] = useState(false);
 
@@ -43,13 +47,12 @@ function Navbar() {
   }, []);
 
   useEffect(() => {
-    setGregorianDate(moment(date).format('YYYY-yil DD-MMM'));
-    setHijriDate(moment(date).format('iYYYY-yil iD-iMMMM'));
+    setGregorianDate(getFormattedDate(date));
+    setHijriDate(moment(date).format('iYYYY-yyyy iD iMMMM'));
   }, [date]);
 
   const handleLogoClick = () => {
-    navigate('/');
-    window.location.reload();
+    navigate('/login'); // LogIN sahifasiga o'tish
   };
 
   const toggleNavLinks = () => {
@@ -69,7 +72,7 @@ function Navbar() {
     <Container>
       <LogoContainer onClick={handleLogoClick}>
         <Logos src={Logo} />
-        <Title>FA Tarix institutining <br /> kutubxonasi</Title>
+        <Title>Fanlar Akademiyasi Tarix institutining <br /> kutubxonasi</Title>
       </LogoContainer>
       <TimeDisplay>
         {time}
@@ -82,9 +85,9 @@ function Navbar() {
         </CalendarWrapper>
       )}
       </TimeDisplay>
-      <TimeDisplay>
+      {/* <TimeDisplay>
         <WeatherSide />
-      </TimeDisplay>
+      </TimeDisplay> */}
       <NavLinks ref={navLinksRef} isVisible={isNavLinksVisible}>
         {navbar.filter(link => !link.hidden).map(({ id, title, path }) => (
           <UILink
